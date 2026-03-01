@@ -1,0 +1,124 @@
+/* ============================================================
+   VESPERA — Design Tokens
+   ============================================================ */
+
+:root {
+
+  /* ── Backgrounds ── */
+  --void:            #050001;
+  --abyss:           #0d0205;
+  --deep-crimson:    #1a0508;
+  --surface:         #220a0e;
+  --surface-raised:  #2e0c10;
+
+  /* ── Brand: Crimson ── */
+  --crimson-950:     #1a0000;
+  --crimson-900:     #3d0000;
+  --crimson-700:     #6b0000;
+  --crimson:         #8b0000;
+  --crimson-500:     #a50012;
+  --crimson-400:     #cc0020;
+  --crimson-glow:    rgba(139, 0, 0, 0.50);
+  --crimson-subtle:  rgba(139, 0, 0, 0.12);
+  --crimson-border:  rgba(139, 0, 0, 0.30);
+
+  /* ── Brand: Gold ── */
+  --gold-dim:        #7a600f;
+  --gold-muted:      #a88520;
+  --gold:            #c9a227;
+  --gold-light:      #e8c547;
+  --gold-bright:     #f5d97a;
+  --gold-pale:       #faefc8;
+  --gold-glow:       rgba(201, 162, 39, 0.40);
+  --gold-subtle:     rgba(201, 162, 39, 0.12);
+  --gold-border:     rgba(201, 162, 39, 0.22);
+  --gold-border-h:   rgba(201, 162, 39, 0.55);
+
+  /* ── Text ── */
+  --cream:           #f5f0e8;
+  --cream-mid:       #d4c9b8;
+  --cream-dim:       #a09080;
+  --cream-muted:     #6e5f52;
+  --white:           #ffffff;
+
+  /* ── Glassmorphism ── */
+  --glass-bg:        rgba(13, 2, 5, 0.70);
+  --glass-bg-med:    rgba(26, 5, 8, 0.55);
+  --glass-bg-light:  rgba(34, 10, 14, 0.40);
+  --glass-border:    rgba(201, 162, 39, 0.18);
+  --glass-border-h:  rgba(201, 162, 39, 0.48);
+
+  /* ── Typography ── */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-accent:  'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ── Type Scale ── */
+  --text-xs:    0.6875rem;   /* 11px */
+  --text-sm:    0.8125rem;   /* 13px */
+  --text-base:  1rem;        /* 16px */
+  --text-lg:    1.125rem;    /* 18px */
+  --text-xl:    1.25rem;     /* 20px */
+  --text-2xl:   1.5rem;      /* 24px */
+  --text-3xl:   1.875rem;    /* 30px */
+  --text-4xl:   2.25rem;     /* 36px */
+  --text-5xl:   3rem;        /* 48px */
+  --text-6xl:   3.75rem;     /* 60px */
+  --text-7xl:   4.5rem;      /* 72px */
+  --text-8xl:   6rem;        /* 96px */
+  --text-9xl:   8rem;        /* 128px */
+
+  /* ── Spacing ── */
+  --sp-1:   0.25rem;
+  --sp-2:   0.5rem;
+  --sp-3:   0.75rem;
+  --sp-4:   1rem;
+  --sp-5:   1.25rem;
+  --sp-6:   1.5rem;
+  --sp-8:   2rem;
+  --sp-10:  2.5rem;
+  --sp-12:  3rem;
+  --sp-16:  4rem;
+  --sp-20:  5rem;
+  --sp-24:  6rem;
+  --sp-32:  8rem;
+  --sp-40: 10rem;
+  --sp-48: 12rem;
+
+  /* ── Radius ── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   24px;
+  --r-xl:   40px;
+  --r-full: 9999px;
+
+  /* ── Transitions ── */
+  --t-snap:  0.12s ease;
+  --t-fast:  0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  --t-base:  0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --t-slow:  0.8s  cubic-bezier(0.16, 1, 0.3, 1);
+  --t-ease:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --t-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Shadows ── */
+  --shadow-gold-sm:  0 0 20px rgba(201, 162, 39, 0.20);
+  --shadow-gold-md:  0 0 40px rgba(201, 162, 39, 0.30), 0 0 80px rgba(201, 162, 39, 0.10);
+  --shadow-gold-lg:  0 0 60px rgba(201, 162, 39, 0.40), 0 0 120px rgba(201, 162, 39, 0.15);
+  --shadow-crimson:  0 0 40px rgba(139, 0, 0, 0.40);
+  --shadow-card:     0 8px 32px rgba(0, 0, 0, 0.60), 0 2px 8px rgba(0, 0, 0, 0.40);
+
+  /* ── Layout ── */
+  --nav-h:        72px;
+  --section-max:  1280px;
+  --content-max:  900px;
+  --text-max:     680px;
+
+  /* ── Z-Index ── */
+  --z-bg:     -1;
+  --z-base:    0;
+  --z-float:  10;
+  --z-card:   20;
+  --z-nav:   100;
+  --z-cursor: 999;
+}

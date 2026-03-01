@@ -1,0 +1,149 @@
+/* ============================================================
+   VESPERA — Navigation
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  z-index: var(--z-nav);
+  transition: background var(--t-base), backdrop-filter var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.is-scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom-color: var(--glass-border);
+  box-shadow: 0 1px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav__inner {
+  max-width: var(--section-max);
+  margin: 0 auto;
+  padding: 0 var(--sp-8);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-8);
+}
+
+/* Logo */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: opacity var(--t-fast);
+}
+.nav__logo:hover { opacity: 0.85; }
+
+.nav__logo-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px var(--gold-glow));
+}
+
+/* Actions (right side) */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+/* Blessed link */
+.nav__link--blessed {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-full);
+  transition: color var(--t-fast), background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.nav__link--blessed:hover {
+  background: var(--gold-subtle);
+  border-color: var(--gold);
+  box-shadow: 0 0 16px var(--gold-glow);
+  color: var(--gold-light);
+}
+
+/* Nav store buttons */
+.nav__store {
+  gap: var(--sp-2);
+}
+
+/* Hamburger (mobile) */
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--sp-2);
+  cursor: none;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  border-radius: var(--r-full);
+  transition: transform var(--t-fast), opacity var(--t-fast), background var(--t-fast);
+  transform-origin: center;
+}
+
+.nav__hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
+.nav__hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.nav__mobile {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: var(--sp-6) var(--sp-6);
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.nav__mobile.is-open { display: flex; }
+
+.nav__mobile-link {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  letter-spacing: 0.05em;
+  color: var(--cream-mid);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--glass-border);
+  transition: color var(--t-fast);
+}
+.nav__mobile-link:hover { color: var(--gold); }
+
+.nav__mobile .btn {
+  align-self: flex-start;
+  margin-top: var(--sp-2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .nav__actions .btn { display: none; }
+  .nav__link--blessed { display: none; }
+  .nav__hamburger { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .nav__inner { padding: 0 var(--sp-5); }
+  .nav__logo-img { height: 28px; }
+}

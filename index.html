@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vespera — Daily Catholic reflections, prayers, insights, and spiritual guidance. A sanctuary of grace in your pocket.">
+  <meta name="keywords" content="Catholic app, Catholic prayers, daily reflections, spiritual guidance, rosary, saints, gospel">
+  <meta name="theme-color" content="#0d0205">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://vespera.oakdev.app/">
+  <meta property="og:title"       content="Vespera — Where Faith Meets Light">
+  <meta property="og:description" content="Daily Catholic reflections, prayers, and spiritual guidance — personalized for your journey of faith.">
+  <meta property="og:image"       content="assets/logo.png">
+
+  <title>Vespera — Where Faith Meets Light</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS (order matters) -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.159.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Noise texture overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- WebGL Canvas -->
+  <canvas id="canvasBg" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav id="nav" class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+
+      <a href="/" class="nav__logo" aria-label="Vespera — Home">
+        <img src="assets/logo.png" alt="Vespera" class="nav__logo-img" loading="eager">
+      </a>
+
+      <div class="nav__actions">
+        <a href="#blessed" class="nav__link--blessed" data-magnetic>Go Blessed</a>
+
+        <a href="#" class="btn btn--ghost btn--sm nav__store" data-magnetic aria-label="Download on App Store">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Download on the</span>
+            <span class="btn__main">App Store</span>
+          </span>
+        </a>
+
+        <a href="#" class="btn btn--primary btn--sm nav__store" data-magnetic aria-label="Get on Google Play">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Get it on</span>
+            <span class="btn__main">Google Play</span>
+          </span>
+        </a>
+      </div>
+
+      <button class="nav__hamburger" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile" id="navMobile" role="menu">
+      <a href="#about"       class="nav__mobile-link" role="menuitem">Our Mission</a>
+      <a href="#categories"  class="nav__mobile-link" role="menuitem">Categories</a>
+      <a href="#how"         class="nav__mobile-link" role="menuitem">How It Works</a>
+      <a href="#reflections" class="nav__mobile-link" role="menuitem">Reflections</a>
+      <a href="#blessed"     class="nav__mobile-link" role="menuitem">Go Blessed</a>
+      <a href="#" class="btn btn--ghost btn--md" style="margin-top:0.5rem;width:fit-content">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="btn btn--primary btn--md" style="width:fit-content">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/></svg>
+        Google Play
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section id="hero" class="hero" aria-labelledby="heroHeadline">
+    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow">✦ &nbsp;A Catholic Companion&nbsp; ✦</div>
+
+      <img
+        src="assets/logo.png"
+        alt="Vespera"
+        class="hero__logo"
+        id="heroLogo"
+        loading="eager"
+        width="320"
+      >
+
+      <h1 class="hero__headline" id="heroHeadline">
+        Where Faith<br><em>Meets Light</em>
+      </h1>
+
+      <p class="hero__sub">
+        Daily Catholic reflections, prayers, and spiritual guidance —<br>
+        personalized for your journey of faith.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#" class="btn btn--ghost btn--lg" data-magnetic aria-label="Download Vespera on the App Store">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Download on the</span>
+            <span class="btn__main">App Store</span>
+          </span>
+        </a>
+
+        <a href="#" class="btn btn--primary btn--lg" data-magnetic aria-label="Get Vespera on Google Play">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Get it on</span>
+            <span class="btn__main">Google Play</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="hero__badges">
+        <span class="hero__badge">No Ads · Ever</span>
+        <span class="hero__badge">8 Categories</span>
+        <span class="hero__badge">Daily Reflections</span>
+        <span class="hero__badge">Catholic Spirit</span>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT / MISSION
+       ============================================================ -->
+  <section id="about" class="about section" aria-labelledby="aboutHeading">
+    <div class="section__inner about__inner">
+
+      <div class="about__visual" data-reveal>
+        <div class="cross-emblem" aria-hidden="true">
+          <div class="cross-emblem__ring cross-emblem__ring--2"></div>
+          <div class="cross-emblem__ring cross-emblem__ring--1"></div>
+          <svg class="cross-emblem__svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="0"  width="20" height="140" rx="3" fill="url(#crossGold)"/>
+            <rect x="0"  y="35" width="100" height="20"  rx="3" fill="url(#crossGold)"/>
+            <defs>
+              <linearGradient id="crossGold" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop offset="0%"   stop-color="#f5d97a"/>
+                <stop offset="50%"  stop-color="#c9a227"/>
+                <stop offset="100%" stop-color="#7a600f"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <div class="about__content" data-reveal>
+        <span class="section__eyebrow">Our Mission</span>
+        <h2 class="section__heading" id="aboutHeading">
+          A Sanctuary of Grace<br><em>in Your Pocket</em>
+        </h2>
+        <p class="about__text">
+          Vespera is more than an app — it is a daily companion for the faithful. Whether you seek morning prayers to begin your day, evening vespers to close it in peace, or deep reflections on the Gospel, Vespera meets you where you are.
+        </p>
+        <p class="about__text">
+          Draw from eight sacred categories, each thoughtfully curated to nurture your Catholic faith and deepen your walk with Christ. Every visit, a new light awaits.
+        </p>
+        <div class="about__stats">
+          <div class="stat">
+            <span class="stat__value">8</span>
+            <span class="stat__label">Categories</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">∞</span>
+            <span class="stat__label">Inspiration</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">1</span>
+            <span class="stat__label">Reflection per visit</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CATEGORIES
+       ============================================================ -->
+  <section id="categories" class="categories section" aria-labelledby="categoriesHeading">
+    <div class="section__inner">
+
+      <div class="section__header">
+        <span class="section__eyebrow">Explore</span>
+        <h2 class="section__heading" id="categoriesHeading">Choose Your Path</h2>
+        <p class="section__sub">
+          Eight sacred doorways to spiritual enrichment.<br>
+          Each visit draws one reflection from your treasury.
+        </p>
+      </div>
+
+      <div class="categories__grid">
+
+        <article class="cat-card" data-tilt aria-label="Morning Prayer">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Morning Prayer</h3>
+          <p class="cat-card__desc">Start your day in grace and gratitude, lifting your first breath to God.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Evening Vespers">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Evening Vespers</h3>
+          <p class="cat-card__desc">Close the day with peace, entrusting your soul to divine rest.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Rosary Reflections">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="12" cy="5"  r="2"/>
+              <circle cx="19" cy="10" r="2"/>
+              <circle cx="19" cy="17" r="2"/>
+              <circle cx="12" cy="21" r="2"/>
+              <circle cx="5"  cy="17" r="2"/>
+              <circle cx="5"  cy="10" r="2"/>
+              <path d="M12 7v2M17.5 11.5l-1.5 1M17.5 16l-1.5-1M12 19v-2M6.5 16l1.5-1M6.5 11.5l1.5 1"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Rosary Reflections</h3>
+          <p class="cat-card__desc">Meditate on the sacred mysteries with Mary as your guide.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Saint of the Day">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Saint of the Day</h3>
+          <p class="cat-card__desc">Walk with the holy ones — their lives illuminate your path.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Gospel Insights">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <line x1="9" y1="7"  x2="15" y2="7"/>
+              <line x1="9" y1="11" x2="15" y2="11"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Gospel Insights</h3>
+          <p class="cat-card__desc">Illuminate the Word — discover what the Gospel speaks to you today.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Spiritual Guidance">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Spiritual Guidance</h3>
+          <p class="cat-card__desc">Direction for your soul — wisdom from the tradition of the Church.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Divine Mercy">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Divine Mercy</h3>
+          <p class="cat-card__desc">Boundless grace awaits — the heart of Christ open to all who seek.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+        <article class="cat-card" data-tilt aria-label="Eucharistic Devotion">
+          <div class="cat-card__glow" aria-hidden="true"></div>
+          <div class="cat-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 2v8"/>
+              <path d="M8 6h8"/>
+              <path d="M7 12a5 5 0 0 0 10 0"/>
+              <path d="M5 20h14"/>
+              <path d="M7 17c.5 1.5 2.5 2.5 5 2.5s4.5-1 5-2.5"/>
+            </svg>
+          </div>
+          <h3 class="cat-card__name">Eucharistic Devotion</h3>
+          <p class="cat-card__desc">Draw near to the Source and Summit — the living presence of Christ.</p>
+          <div class="cat-card__badge">1 reflection</div>
+          <div class="cat-card__shine" aria-hidden="true"></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <section id="how" class="how section" aria-labelledby="howHeading">
+    <div class="section__inner">
+
+      <div class="section__header">
+        <span class="section__eyebrow">Getting Started</span>
+        <h2 class="section__heading" id="howHeading">Simple as a Prayer</h2>
+      </div>
+
+      <div class="how__steps">
+
+        <div class="step" data-reveal>
+          <div class="step__num">01</div>
+          <div class="step__icon">
+            <img src="assets/icon.png" alt="Vespera app icon" loading="lazy" width="64" height="64">
+          </div>
+          <h3 class="step__title">Download Vespera</h3>
+          <p class="step__text">Free to download on the App Store and Google Play. Begin your journey in moments.</p>
+        </div>
+
+        <div class="step__connector" aria-hidden="true">
+          <div class="step__connector-line"></div>
+        </div>
+
+        <div class="step" data-reveal>
+          <div class="step__num">02</div>
+          <div class="step__icon step__icon--grid">
+            <div class="step__mini-cat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+            </div>
+            <div class="step__mini-cat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </div>
+            <div class="step__mini-cat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="step__mini-cat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+          </div>
+          <h3 class="step__title">Choose a Category</h3>
+          <p class="step__text">Browse eight sacred categories and select the one calling to your heart today.</p>
+        </div>
+
+        <div class="step__connector" aria-hidden="true">
+          <div class="step__connector-line"></div>
+        </div>
+
+        <div class="step" data-reveal>
+          <div class="step__num">03</div>
+          <div class="step__icon step__icon--reflection">
+            <div class="step__refl-card">
+              <div class="step__refl-line step__refl-line--gold"></div>
+              <div class="step__refl-line step__refl-line--short"></div>
+              <div class="step__refl-line step__refl-line--short" style="width:45%;margin-top:0;"></div>
+            </div>
+          </div>
+          <h3 class="step__title">Receive Your Reflection</h3>
+          <p class="step__text">A personally curated Catholic reflection, prayer, or insight appears — just for you, just for today.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       REFLECTIONS SYSTEM
+       ============================================================ -->
+  <section id="reflections" class="reflections section" aria-labelledby="reflHeading">
+    <div class="section__inner reflections__inner">
+
+      <div class="refl-counter" data-reveal>
+        <div class="refl-counter__crystal" aria-hidden="true">
+          <svg class="refl-counter__crystal-svg" viewBox="0 0 72 72" fill="none">
+            <polygon points="36,6 58,24 50,60 22,60 14,24" fill="url(#crystalGrad)" opacity="0.9"/>
+            <polygon points="36,6 58,24 36,20" fill="rgba(245,217,122,0.3)"/>
+            <line x1="36" y1="6" x2="36" y2="20" stroke="#f5d97a" stroke-width="1" opacity="0.5"/>
+            <defs>
+              <linearGradient id="crystalGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#e8c547"/>
+                <stop offset="60%"  stop-color="#c9a227"/>
+                <stop offset="100%" stop-color="#7a600f"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="refl-counter__value" id="reflCounterVal">12</div>
+        <div class="refl-counter__label">reflections remaining</div>
+        <div class="refl-counter__gauge">
+          <div class="refl-counter__fill"></div>
+        </div>
+      </div>
+
+      <div class="reflections__content" data-reveal>
+        <span class="section__eyebrow">Your Treasury</span>
+        <h2 class="section__heading" id="reflHeading">
+          Your Reflections,<br><em>Your Journey</em>
+        </h2>
+        <p class="reflections__text">
+          Each category you explore draws one reflection from your treasury. Choose with intention, receive with an open heart.
+        </p>
+        <p class="reflections__text">
+          Your reflections replenish regularly — and with <strong>Blessed</strong>, you receive a generous abundance each month to walk deeper in faith.
+        </p>
+        <a href="#blessed" class="btn btn--ghost btn--md" data-magnetic>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Discover Blessed
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       BLESSED TIER
+       ============================================================ -->
+  <section id="blessed" class="blessed section" aria-labelledby="blessedHeading">
+    <div class="section__inner">
+
+      <div class="section__header" style="margin-bottom:var(--sp-12)">
+        <span class="section__eyebrow">Upgrade</span>
+      </div>
+
+      <div class="blessed__card" data-reveal>
+        <div class="blessed__glow" aria-hidden="true"></div>
+
+        <div class="blessed__badge">✦ &nbsp;Blessed Tier&nbsp; ✦</div>
+
+        <h2 class="blessed__heading" id="blessedHeading">Go Blessed</h2>
+
+        <p class="blessed__sub">Unlock the fullness of your spiritual journey</p>
+
+        <ul class="blessed__features" aria-label="Blessed tier benefits">
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>Generous monthly reflections</span>
+          </li>
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>Exclusive prayer collections</span>
+          </li>
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>Advanced spiritual categories</span>
+          </li>
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>Priority content updates</span>
+          </li>
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>A deeper walk with faith</span>
+          </li>
+          <li class="blessed__feature">
+            <span class="blessed__check" aria-hidden="true">✓</span>
+            <span>No ads. Ever.</span>
+          </li>
+        </ul>
+
+        <div class="blessed__ctas">
+          <a href="#" class="btn btn--ghost btn--lg" data-magnetic>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span class="btn__label">
+              <span class="btn__sup">Download on the</span>
+              <span class="btn__main">App Store</span>
+            </span>
+          </a>
+          <a href="#" class="btn btn--primary btn--lg" data-magnetic>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/>
+            </svg>
+            <span class="btn__label">
+              <span class="btn__sup">Get it on</span>
+              <span class="btn__main">Google Play</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       DOWNLOAD CTA
+       ============================================================ -->
+  <section id="download" class="download-cta section" aria-labelledby="downloadHeading">
+    <div class="section__inner download-cta__inner">
+
+      <img src="assets/logo.png" alt="Vespera" class="download-cta__logo" loading="lazy" data-reveal>
+
+      <h2 class="download-cta__heading" id="downloadHeading" data-reveal>Begin Your Journey</h2>
+
+      <p class="download-cta__sub" data-reveal>
+        Join the faithful who walk with Vespera every day.
+      </p>
+
+      <div class="download-cta__buttons" data-reveal>
+        <a href="#" class="btn btn--ghost btn--xl" data-magnetic aria-label="Download on App Store">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Download on the</span>
+            <span class="btn__main">App Store</span>
+          </span>
+        </a>
+
+        <a href="#" class="btn btn--primary btn--xl" data-magnetic aria-label="Get on Google Play">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/>
+          </svg>
+          <span class="btn__label">
+            <span class="btn__sup">Get it on</span>
+            <span class="btn__main">Google Play</span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer id="footer" class="footer" role="contentinfo">
+    <div class="footer__inner">
+
+      <div class="footer__brand">
+        <img src="assets/logo.png" alt="Vespera" class="footer__logo" loading="lazy">
+        <p class="footer__tagline">A sanctuary of grace in your pocket.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Legal and support links">
+        <h3 class="footer__links-heading">Links</h3>
+        <a href="/privacy"        class="footer__link">Privacy Policy</a>
+        <a href="/terms"          class="footer__link">Terms of Service</a>
+        <a href="/support"        class="footer__link">Support</a>
+        <a href="/delete-account" class="footer__link">Delete Account</a>
+      </nav>
+
+      <div class="footer__stores">
+        <h3 class="footer__stores-heading">Get the App</h3>
+        <a href="#" class="footer__store-btn" aria-label="Download on App Store">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          App Store
+        </a>
+        <a href="#" class="footer__store-btn" aria-label="Get on Google Play">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199a1 1 0 01.302 1.492L15.794 12l1.206 1.206a1 1 0 01-.302 1.492L13 16.5l-2.699-2.7 5.397-5.397 2 1.104zm-13.088-.61l10.936 6.333-2.301 2.302-8.635-8.635z"/>
+          </svg>
+          Google Play
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>&#169; 2026 OakDev &amp; AI AB. All rights reserved.</p>
+      <nav class="footer__bottom-links" aria-label="Bottom navigation">
+        <a href="/privacy"        class="footer__bottom-link">Privacy</a>
+        <a href="/terms"          class="footer__bottom-link">Terms</a>
+        <a href="/support"        class="footer__bottom-link">Support</a>
+        <a href="/delete-account" class="footer__bottom-link">Delete Account</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+
+  <!-- GSAP (must be global, loaded before ES module) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <!-- Main ES module entry -->
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

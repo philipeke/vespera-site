@@ -1,0 +1,201 @@
+/* ============================================================
+   VESPERA — Keyframes & Animation Utilities
+   ============================================================ */
+
+/* ── Reveal animations ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.90); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Gold shimmer ── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--gold-muted) 25%,
+    var(--gold-bright) 50%,
+    var(--gold-muted) 75%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Pulse glow ── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px var(--gold-glow); }
+  50%       { box-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(201, 162, 39, 0.15); }
+}
+
+@keyframes pulse-glow-crimson {
+  0%, 100% { box-shadow: 0 0 10px var(--crimson-glow); }
+  50%       { box-shadow: 0 0 30px var(--crimson-glow), 0 0 60px rgba(139, 0, 0, 0.15); }
+}
+
+/* ── Floating ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(1deg); }
+  66%       { transform: translateY(-4px) rotate(-0.5deg); }
+}
+
+/* ── Rotate ── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* ── Count up (for JS-driven counters) ── */
+@keyframes count-glow {
+  0%, 100% { text-shadow: 0 0 20px var(--gold-glow); }
+  50%       { text-shadow: 0 0 40px var(--gold-glow), 0 0 80px rgba(201, 162, 39, 0.20); }
+}
+
+/* ── Stagger utilities (applied by JS) ── */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.10s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.20s; }
+.stagger-5 { transition-delay: 0.25s; }
+.stagger-6 { transition-delay: 0.30s; }
+.stagger-7 { transition-delay: 0.35s; }
+.stagger-8 { transition-delay: 0.40s; }
+
+/* ── Loading state ── */
+@keyframes skeleton-shine {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ── Clip-path reveals (used by GSAP) ── */
+.clip-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+.clip-reveal.is-revealed {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 0.8s var(--t-ease);
+}
+
+/* ── Gold border animation ── */
+@keyframes border-glow-pulse {
+  0%, 100% { border-color: var(--gold-border); box-shadow: 0 0 0 transparent; }
+  50%       { border-color: var(--gold); box-shadow: 0 0 20px var(--gold-glow); }
+}
+
+/* ── Text gradient animate ── */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--gold-muted),
+    var(--gold-light),
+    var(--cream),
+    var(--gold),
+    var(--gold-muted)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* ── Page entry ── */
+.page-enter {
+  animation: fade-in 0.6s ease both;
+}
+
+/* ── Divider wave ── */
+@keyframes wave-drift {
+  0%, 100% { d: path('M0,20 Q250,0 500,20 T1000,20 V40 H0 Z'); }
+  50%       { d: path('M0,10 Q250,30 500,10 T1000,10 V40 H0 Z'); }
+}
+
+/* ── Icon spin on hover (utility) ── */
+.icon-spin-hover:hover svg {
+  animation: spin-slow 1s linear;
+}
+
+/* ── Underline draw ── */
+.underline-draw {
+  position: relative;
+}
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 0.4s var(--t-ease);
+}
+.underline-draw:hover::after { width: 100%; }
+
+/* ── GSAP initial states (hidden until animated in) ── */
+.gsap-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gsap-hidden-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.gsap-hidden-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.gsap-hidden-scale {
+  opacity: 0;
+  transform: scale(0.85);
+}

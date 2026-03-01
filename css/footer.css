@@ -1,0 +1,202 @@
+/* ============================================================
+   VESPERA — Footer
+   ============================================================ */
+
+.footer {
+  background: var(--void);
+  border-top: 1px solid var(--glass-border);
+  padding: var(--sp-16) var(--sp-8) 0;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), var(--gold-muted), var(--gold-border), transparent);
+}
+
+.footer__inner {
+  max-width: var(--section-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--sp-12);
+  padding-bottom: var(--sp-12);
+}
+
+/* Brand column */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.footer__logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.20));
+  opacity: 0.90;
+}
+
+.footer__tagline {
+  font-family: var(--font-accent);
+  font-size: var(--text-base);
+  color: var(--cream-muted);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+/* Links column */
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.footer__links-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.footer__link {
+  font-size: var(--text-sm);
+  color: var(--cream-muted);
+  transition: color var(--t-fast);
+  letter-spacing: 0.01em;
+  width: fit-content;
+  position: relative;
+}
+
+.footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--t-fast);
+}
+
+.footer__link:hover {
+  color: var(--gold-light);
+}
+.footer__link:hover::after { width: 100%; }
+
+/* Stores column */
+.footer__stores {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.footer__stores-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.footer__store-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  background: var(--glass-bg-light);
+  color: var(--cream-mid);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+  width: fit-content;
+  backdrop-filter: blur(8px);
+}
+
+.footer__store-btn:hover {
+  border-color: var(--gold-border-h);
+  background: var(--gold-subtle);
+  color: var(--gold-light);
+  box-shadow: var(--shadow-gold-sm);
+}
+
+.footer__store-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Bottom bar */
+.footer__bottom {
+  border-top: 1px solid var(--glass-border);
+  padding: var(--sp-6) 0 var(--sp-8);
+  max-width: var(--section-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.footer__bottom p {
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  letter-spacing: 0.05em;
+}
+
+.footer__bottom-links {
+  display: flex;
+  gap: var(--sp-6);
+}
+
+.footer__bottom-link {
+  font-size: var(--text-xs);
+  color: var(--cream-muted);
+  transition: color var(--t-fast);
+}
+.footer__bottom-link:hover { color: var(--gold-muted); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-10);
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: var(--sp-12) var(--sp-5) 0;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+}

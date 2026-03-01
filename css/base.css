@@ -241,17 +241,8 @@ body {
   background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
 }
 
-/* ── Data-reveal animations (set initial state) ── */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.7s var(--t-ease), transform 0.7s var(--t-ease);
-}
+/* ── Data-reveal: initial hidden state is set by GSAP in animations.js
+      Keeping this empty ensures sections stay visible if GSAP doesn't load ── */
 
 /* ── Typography helpers ── */
 .text-gold   { color: var(--gold); }

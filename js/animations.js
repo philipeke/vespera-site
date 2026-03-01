@@ -2,13 +2,34 @@
    VESPERA — GSAP + ScrollTrigger Animations
    ============================================================ */
 
-export function initAnimations() {
+export function initAnimations(lenis) {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('[Vespera] GSAP or ScrollTrigger not loaded.');
+    // GSAP not loaded — make all hidden elements visible immediately
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      el.style.opacity  = '1';
+      el.style.transform = 'none';
+    });
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
+
+  // Set initial hidden state for all data-reveal elements via GSAP
+  // (NOT via CSS, so elements are always visible if JS is off or GSAP fails)
+  gsap.set('[data-reveal]', { opacity: 0, y: 40 });
+
+  // Wire Lenis → ScrollTrigger proxy if lenis exists
+  if (lenis) {
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop(value) {
+        if (arguments.length) { lenis.scrollTo(value, { immediate: true }); }
+        return lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+    });
+  }
 
   animateHero();
   animateSections();
@@ -17,334 +38,195 @@ export function initAnimations() {
   animateReflections();
   animateBlessed();
   animateNav();
+
+  // Refresh after layout is settled
+  window.addEventListener('load', () => {
+    setTimeout(() => ScrollTrigger.refresh(), 200);
+  });
 }
 
 // ── Hero Timeline ────────────────────────────────────────────
 
 function animateHero() {
-  const tl = gsap.timeline({ delay: 0.2 });
+  const tl = gsap.timeline({ delay: 0.15 });
 
   tl.from('.hero__eyebrow', {
-    opacity: 0,
-    y: 20,
-    duration: 0.8,
-    ease: 'power3.out',
+    opacity: 0, y: 20, duration: 0.7, ease: 'power3.out',
   })
   .from('.hero__logo', {
-    opacity: 0,
-    scale: 0.8,
-    y: 20,
-    duration: 1.0,
-    ease: 'back.out(1.4)',
-  }, '-=0.4')
-  .from('.hero__headline', {
-    opacity: 0,
-    y: 50,
-    duration: 1.0,
-    ease: 'power3.out',
-  }, '-=0.6')
-  .from('.hero__sub', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    ease: 'power3.out',
-  }, '-=0.5')
-  .from('.hero__ctas .btn', {
-    opacity: 0,
-    y: 25,
-    scale: 0.9,
-    stagger: 0.12,
-    duration: 0.7,
-    ease: 'back.out(1.4)',
-  }, '-=0.4')
-  .from('.hero__badges .hero__badge', {
-    opacity: 0,
-    y: 15,
-    stagger: 0.08,
-    duration: 0.5,
-    ease: 'power2.out',
+    opacity: 0, scale: 0.82, y: 20, duration: 0.9, ease: 'back.out(1.4)',
   }, '-=0.3')
+  .from('.hero__headline', {
+    opacity: 0, y: 45, duration: 0.9, ease: 'power3.out',
+  }, '-=0.5')
+  .from('.hero__sub', {
+    opacity: 0, y: 28, duration: 0.75, ease: 'power3.out',
+  }, '-=0.45')
+  .from('.hero__ctas .btn', {
+    opacity: 0, y: 22, scale: 0.92, stagger: 0.12, duration: 0.65, ease: 'back.out(1.4)',
+  }, '-=0.35')
+  .from('.hero__badges .hero__badge', {
+    opacity: 0, y: 12, stagger: 0.07, duration: 0.45, ease: 'power2.out',
+  }, '-=0.25')
   .from('.hero__scroll', {
-    opacity: 0,
-    y: 15,
-    duration: 0.6,
-    ease: 'power2.out',
+    opacity: 0, y: 12, duration: 0.5, ease: 'power2.out',
   }, '-=0.1');
 }
 
 // ── Generic section reveals ──────────────────────────────────
 
 function animateSections() {
-  const sections = ['.about', '.how', '.reflections', '.download-cta'];
+  // About: left/right split
+  gsap.to('.about__visual', {
+    opacity: 1, x: 0, duration: 1.0, ease: 'power3.out',
+    scrollTrigger: { trigger: '.about__inner', start: 'top 78%', once: true },
+  });
+  gsap.set('.about__visual', { x: -60 });
 
-  sections.forEach(sel => {
-    // Section eyebrow + heading
-    gsap.from(`${sel} .section__eyebrow`, {
-      opacity: 0,
-      y: 20,
-      duration: 0.7,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: `${sel} .section__header`,
-        start: 'top 80%',
-        once: true,
-      },
-    });
+  gsap.to('.about__content', {
+    opacity: 1, x: 0, duration: 1.0, ease: 'power3.out', delay: 0.1,
+    scrollTrigger: { trigger: '.about__inner', start: 'top 78%', once: true },
+  });
+  gsap.set('.about__content', { x: 60 });
 
-    gsap.from(`${sel} .section__heading`, {
-      opacity: 0,
-      y: 40,
-      duration: 0.9,
-      ease: 'power3.out',
-      delay: 0.1,
-      scrollTrigger: {
-        trigger: `${sel} .section__header`,
-        start: 'top 80%',
-        once: true,
-      },
-    });
+  // Stats
+  gsap.to('.stat', {
+    opacity: 1, y: 0, stagger: 0.12, duration: 0.65, ease: 'back.out(1.4)',
+    scrollTrigger: { trigger: '.about__stats', start: 'top 86%', once: true },
+  });
+  gsap.set('.stat', { opacity: 0, y: 22 });
 
-    gsap.from(`${sel} .section__sub`, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: 'power3.out',
-      delay: 0.2,
-      scrollTrigger: {
-        trigger: `${sel} .section__header`,
-        start: 'top 80%',
-        once: true,
-      },
-    });
+  // Section headers (eyebrow + heading + sub) — generic
+  ['.about', '.categories', '.how', '.reflections', '.blessed', '.download-cta'].forEach(sel => {
+    const eyebrow = document.querySelector(`${sel} .section__eyebrow`);
+    const heading = document.querySelector(`${sel} .section__heading`);
+    const sub     = document.querySelector(`${sel} .section__sub`);
+
+    const trigger = document.querySelector(`${sel} .section__header`) || document.querySelector(sel);
+    if (!trigger) return;
+
+    if (eyebrow) {
+      gsap.set(eyebrow, { opacity: 0, y: 18 });
+      gsap.to(eyebrow, {
+        opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
+        scrollTrigger: { trigger, start: 'top 82%', once: true },
+      });
+    }
+    if (heading) {
+      gsap.set(heading, { opacity: 0, y: 35 });
+      gsap.to(heading, {
+        opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', delay: 0.08,
+        scrollTrigger: { trigger, start: 'top 82%', once: true },
+      });
+    }
+    if (sub) {
+      gsap.set(sub, { opacity: 0, y: 22 });
+      gsap.to(sub, {
+        opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.16,
+        scrollTrigger: { trigger, start: 'top 82%', once: true },
+      });
+    }
   });
 
-  // About: split left/right reveal
-  gsap.from('.about__visual', {
-    opacity: 0,
-    x: -60,
-    duration: 1.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.about__inner',
-      start: 'top 75%',
-      once: true,
-    },
+  // Reflections: left/right split
+  gsap.set('.refl-counter',         { x: -50, scale: 0.93 });
+  gsap.set('.reflections__content', { x: 50 });
+  gsap.to('.refl-counter', {
+    opacity: 1, x: 0, scale: 1, duration: 0.95, ease: 'power3.out',
+    scrollTrigger: { trigger: '.reflections__inner', start: 'top 78%', once: true },
   });
-
-  gsap.from('.about__content', {
-    opacity: 0,
-    x: 60,
-    duration: 1.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.about__inner',
-      start: 'top 75%',
-      once: true,
-    },
-  });
-
-  // Stats counter
-  gsap.from('.stat', {
-    opacity: 0,
-    y: 25,
-    stagger: 0.12,
-    duration: 0.7,
-    ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: '.about__stats',
-      start: 'top 85%',
-      once: true,
-    },
-  });
-
-  // Reflections: split left/right
-  gsap.from('.refl-counter', {
-    opacity: 0,
-    x: -60,
-    scale: 0.92,
-    duration: 1.0,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.reflections__inner',
-      start: 'top 75%',
-      once: true,
-    },
-  });
-
-  gsap.from('.reflections__content', {
-    opacity: 0,
-    x: 60,
-    duration: 1.0,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.reflections__inner',
-      start: 'top 75%',
-      once: true,
-    },
+  gsap.to('.reflections__content', {
+    opacity: 1, x: 0, duration: 0.95, ease: 'power3.out', delay: 0.1,
+    scrollTrigger: { trigger: '.reflections__inner', start: 'top 78%', once: true },
   });
 
   // Download CTA
-  gsap.from('.download-cta__logo', {
-    opacity: 0,
-    scale: 0.8,
-    duration: 1.0,
-    ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: '.download-cta',
-      start: 'top 70%',
-      once: true,
-    },
+  gsap.to('.download-cta__logo', {
+    opacity: 1, scale: 1, duration: 0.95, ease: 'back.out(1.4)',
+    scrollTrigger: { trigger: '.download-cta', start: 'top 72%', once: true },
+  });
+  gsap.set('.download-cta__logo', { scale: 0.82 });
+
+  gsap.set(['.download-cta__heading', '.download-cta__sub'], { opacity: 0, y: 30 });
+  gsap.to(['.download-cta__heading', '.download-cta__sub'], {
+    opacity: 1, y: 0, stagger: 0.14, duration: 0.75, ease: 'power3.out', delay: 0.18,
+    scrollTrigger: { trigger: '.download-cta', start: 'top 72%', once: true },
   });
 
-  gsap.from(['.download-cta__heading', '.download-cta__sub'], {
-    opacity: 0,
-    y: 35,
-    stagger: 0.15,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.download-cta',
-      start: 'top 70%',
-      once: true,
-    },
-    delay: 0.2,
-  });
-
-  gsap.from('.download-cta__buttons .btn', {
-    opacity: 0,
-    y: 25,
-    scale: 0.9,
-    stagger: 0.12,
-    duration: 0.7,
-    ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: '.download-cta__buttons',
-      start: 'top 80%',
-      once: true,
-    },
+  gsap.set('.download-cta__buttons .btn', { opacity: 0, y: 22, scale: 0.92 });
+  gsap.to('.download-cta__buttons .btn', {
+    opacity: 1, y: 0, scale: 1, stagger: 0.12, duration: 0.65, ease: 'back.out(1.4)',
+    scrollTrigger: { trigger: '.download-cta__buttons', start: 'top 82%', once: true },
   });
 }
 
-// ── Categories grid ──────────────────────────────────────────
+// ── Categories ───────────────────────────────────────────────
 
 function animateCategories() {
-  // Header
-  gsap.from('.categories .section__eyebrow', {
-    opacity: 0, y: 20, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '.categories .section__header', start: 'top 80%', once: true },
-  });
-
-  gsap.from('.categories .section__heading', {
-    opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', delay: 0.1,
-    scrollTrigger: { trigger: '.categories .section__header', start: 'top 80%', once: true },
-  });
-
-  gsap.from('.categories .section__sub', {
-    opacity: 0, y: 25, duration: 0.7, ease: 'power3.out', delay: 0.2,
-    scrollTrigger: { trigger: '.categories .section__header', start: 'top 80%', once: true },
-  });
-
-  // Cards staggered
-  gsap.from('.cat-card', {
-    opacity: 0,
-    y: 50,
-    scale: 0.90,
-    stagger: {
-      each: 0.09,
-      grid: 'auto',
-      from: 'start',
-    },
-    duration: 0.75,
+  gsap.set('.cat-card', { opacity: 0, y: 45, scale: 0.92 });
+  gsap.to('.cat-card', {
+    opacity: 1, y: 0, scale: 1,
+    stagger: { each: 0.07, grid: 'auto', from: 'start' },
+    duration: 0.7,
     ease: 'back.out(1.2)',
-    scrollTrigger: {
-      trigger: '.categories__grid',
-      start: 'top 80%',
-      once: true,
-    },
+    scrollTrigger: { trigger: '.categories__grid', start: 'top 82%', once: true },
   });
 }
 
 // ── How It Works ─────────────────────────────────────────────
 
 function animateHowItWorks() {
-  gsap.from('.how .section__eyebrow', {
-    opacity: 0, y: 20, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '.how .section__header', start: 'top 80%', once: true },
-  });
-
-  gsap.from('.how .section__heading', {
-    opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', delay: 0.1,
-    scrollTrigger: { trigger: '.how .section__header', start: 'top 80%', once: true },
-  });
-
-  // Steps reveal
-  gsap.from('.step', {
-    opacity: 0,
-    y: 50,
-    stagger: 0.2,
-    duration: 0.9,
+  gsap.set('.step', { opacity: 0, y: 45 });
+  gsap.to('.step', {
+    opacity: 1, y: 0,
+    stagger: 0.18,
+    duration: 0.85,
     ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.how__steps',
-      start: 'top 80%',
-      once: true,
-    },
+    scrollTrigger: { trigger: '.how__steps', start: 'top 80%', once: true },
   });
 
-  // Connector lines scale in
-  gsap.from('.step__connector-line', {
-    scaleX: 0,
-    transformOrigin: 'left center',
-    stagger: 0.2,
-    duration: 0.8,
+  gsap.set('.step__connector-line', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.to('.step__connector-line', {
+    scaleX: 1,
+    stagger: 0.18,
+    duration: 0.75,
     ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.how__steps',
-      start: 'top 75%',
-      once: true,
-    },
-    delay: 0.4,
+    delay: 0.35,
+    scrollTrigger: { trigger: '.how__steps', start: 'top 78%', once: true },
   });
 }
 
 // ── Reflections counter animation ────────────────────────────
 
 function animateReflections() {
-  // Animate counter value
+  // Counter number count-up
   ScrollTrigger.create({
     trigger: '.refl-counter',
-    start: 'top 75%',
+    start: 'top 78%',
     once: true,
     onEnter: () => {
       const el = document.getElementById('reflCounterVal');
       if (!el) return;
-      gsap.fromTo(el,
-        { innerText: 0 },
-        {
-          innerText: 12,
-          duration: 1.5,
-          ease: 'power2.out',
-          snap: { innerText: 1 },
-          onUpdate() {
-            el.textContent = Math.round(this.targets()[0].innerText);
-          },
-        }
-      );
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: 12,
+        duration: 1.6,
+        ease: 'power2.out',
+        onUpdate() { el.textContent = Math.round(obj.val); },
+      });
     },
   });
 
-  // Gauge fill animation
+  // Gauge fill
   ScrollTrigger.create({
     trigger: '.refl-counter__gauge',
-    start: 'top 80%',
+    start: 'top 82%',
     once: true,
     onEnter: () => {
-      gsap.from('.refl-counter__fill', {
-        width: '0%',
-        duration: 1.8,
-        ease: 'power3.out',
-        delay: 0.3,
-      });
+      gsap.fromTo('.refl-counter__fill',
+        { width: '0%' },
+        { width: '75%', duration: 1.8, ease: 'power3.out', delay: 0.3 }
+      );
     },
   });
 }
@@ -352,50 +234,29 @@ function animateReflections() {
 // ── Blessed card ─────────────────────────────────────────────
 
 function animateBlessed() {
-  gsap.from('.blessed .section__eyebrow', {
-    opacity: 0, y: 20, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '.blessed', start: 'top 80%', once: true },
+  gsap.to('.blessed__card', {
+    opacity: 1, y: 0, scale: 1, duration: 1.0, ease: 'back.out(1.15)',
+    scrollTrigger: { trigger: '.blessed', start: 'top 76%', once: true },
   });
+  gsap.set('.blessed__card', { scale: 0.95 });
 
-  gsap.from('.blessed__card', {
-    opacity: 0,
-    y: 60,
-    scale: 0.94,
-    duration: 1.1,
-    ease: 'back.out(1.2)',
-    scrollTrigger: {
-      trigger: '.blessed',
-      start: 'top 75%',
-      once: true,
-    },
-  });
-
-  gsap.from('.blessed__feature', {
-    opacity: 0,
-    x: -20,
-    stagger: 0.08,
-    duration: 0.6,
+  gsap.set('.blessed__feature', { opacity: 0, x: -18 });
+  gsap.to('.blessed__feature', {
+    opacity: 1, x: 0,
+    stagger: 0.07,
+    duration: 0.55,
     ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '.blessed__features',
-      start: 'top 80%',
-      once: true,
-    },
-    delay: 0.3,
+    delay: 0.28,
+    scrollTrigger: { trigger: '.blessed__features', start: 'top 82%', once: true },
   });
 
-  gsap.from('.blessed__ctas .btn', {
-    opacity: 0,
-    y: 20,
-    scale: 0.9,
+  gsap.set('.blessed__ctas .btn', { opacity: 0, y: 18, scale: 0.92 });
+  gsap.to('.blessed__ctas .btn', {
+    opacity: 1, y: 0, scale: 1,
     stagger: 0.1,
-    duration: 0.7,
+    duration: 0.6,
     ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: '.blessed__ctas',
-      start: 'top 85%',
-      once: true,
-    },
+    scrollTrigger: { trigger: '.blessed__ctas', start: 'top 86%', once: true },
   });
 }
 
@@ -406,14 +267,10 @@ function animateNav() {
   if (!nav) return;
 
   ScrollTrigger.create({
-    start: 'top -80px',
+    start: 80,
     end: 'max',
     onUpdate: self => {
-      if (self.progress > 0) {
-        nav.classList.add('is-scrolled');
-      } else {
-        nav.classList.remove('is-scrolled');
-      }
+      nav.classList.toggle('is-scrolled', self.scroll() > 80);
     },
   });
 }

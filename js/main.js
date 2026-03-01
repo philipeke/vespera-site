@@ -13,19 +13,21 @@ import {
   initCounters,
 } from './interactions.js';
 
-// ── DOMContentLoaded ─────────────────────────────────────────
-
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Lenis smooth scroll
-  initLenis();
+  // 1. Fade in body immediately (avoids flash)
+  document.body.style.opacity = '1';
 
-  // 2. Three.js WebGL background
+  // 2. Canvas 2D particle background
   initScene();
 
-  // 3. GSAP scroll animations
-  initAnimations();
+  // 3. Lenis smooth scroll — MUST be initialized before GSAP animations
+  //    so that ScrollTrigger can receive scroll events correctly
+  const lenis = initLenis();
 
-  // 4. Interaction layer
+  // 4. GSAP animations — pass lenis so we can wire it to ScrollTrigger
+  initAnimations(lenis);
+
+  // 5. Interactions
   initCursor();
   initMagnetic();
   initCardTilt();
@@ -33,88 +35,48 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initCounters();
 
-  // 5. Miscellaneous
-  initPageEffects();
+  // 6. Hero orb parallax on scroll
+  window.addEventListener('scroll', onScroll, { passive: true });
 });
 
 // ── Lenis smooth scroll ───────────────────────────────────────
 
 function initLenis() {
-  if (typeof Lenis === 'undefined') return;
+  if (typeof Lenis === 'undefined') return null;
 
   const lenis = new Lenis({
-    duration: 1.2,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smooth: true,
-    smoothTouch: false,
-    touchMultiplier: 2,
+    duration:        1.1,
+    easing:          t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth:          true,
+    smoothTouch:     false,
   });
 
-  // Integrate with GSAP ticker if available
+  // Critical: wire Lenis scroll events → ScrollTrigger so it updates correctly
+  if (typeof ScrollTrigger !== 'undefined') {
+    lenis.on('scroll', ScrollTrigger.update);
+  }
+
+  // Drive Lenis via GSAP ticker (single rAF loop)
   if (typeof gsap !== 'undefined') {
-    gsap.ticker.add(time => {
-      lenis.raf(time * 1000);
-    });
+    gsap.ticker.add(time => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
   } else {
     // Fallback: own rAF loop
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
+
+  return lenis;
 }
 
-// ── Page-level effects ────────────────────────────────────────
+// ── Hero orb parallax ────────────────────────────────────────
 
-function initPageEffects() {
-  // Fade in body on load
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s ease';
-
-  window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-  });
-
-  // Parallax for hero orbs
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const orb1 = document.querySelector('.hero__orb--1');
-    const orb2 = document.querySelector('.hero__orb--2');
-    const orb3 = document.querySelector('.hero__orb--3');
-
-    if (orb1) orb1.style.transform = `translateY(${scrollY * 0.15}px)`;
-    if (orb2) orb2.style.transform = `translateY(${scrollY * -0.10}px)`;
-    if (orb3) orb3.style.transform = `translateY(${scrollY * 0.08}px)`;
-  }, { passive: true });
-
-  // Active nav link on scroll (highlight current section)
-  initActiveSectionHighlight();
-}
-
-// ── Active section tracking ───────────────────────────────────
-
-function initActiveSectionHighlight() {
-  const sections = document.querySelectorAll('section[id]');
-  if (!sections.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const id = entry.target.id;
-      const navLink = document.querySelector(`.nav__mobile-link[href="#${id}"]`);
-      if (!navLink) return;
-
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.nav__mobile-link').forEach(l => l.style.color = '');
-        navLink.style.color = 'var(--gold)';
-      }
-    });
-  }, {
-    rootMargin: '-30% 0px -60% 0px',
-  });
-
-  sections.forEach(s => observer.observe(s));
+function onScroll() {
+  const y = window.scrollY;
+  const orb1 = document.querySelector('.hero__orb--1');
+  const orb2 = document.querySelector('.hero__orb--2');
+  const orb3 = document.querySelector('.hero__orb--3');
+  if (orb1) orb1.style.transform = `translateY(${y * 0.15}px)`;
+  if (orb2) orb2.style.transform = `translateY(${y * -0.10}px)`;
+  if (orb3) orb3.style.transform = `translateY(${y * 0.08}px)`;
 }

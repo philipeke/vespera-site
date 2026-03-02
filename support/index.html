@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vespera Support — Get help, find answers, and contact the OakDev &amp; AI AB team.">
+  <meta name="robots" content="index, follow">
+  <title>Support — Vespera</title>
+  <link rel="icon" type="image/png" href="../assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <style>
+    body { font-family: var(--font-body); font-size: var(--text-base); color: var(--cream); background-color: var(--abyss); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--gold); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--gold-light); text-decoration: underline; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    ul, ol { list-style: none; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--abyss); }
+    ::-webkit-scrollbar-thumb { background: var(--crimson-700); border-radius: 99px; }
+
+    /* ── Nav ── */
+    .nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align-items: center; background: rgba(13,2,5,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 0 clamp(1.5rem,5vw,4rem); }
+    .nav__inner { max-width: 1280px; margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 1.5rem; }
+    .nav__back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.05em; color: var(--cream-mid); transition: color 0.2s; text-decoration: none; }
+    .nav__back:hover { color: var(--gold); text-decoration: none; }
+    .nav__back svg { flex-shrink: 0; }
+    .nav__logo { height: 30px; width: auto; filter: drop-shadow(0 0 6px rgba(201,162,39,0.2)); }
+    .nav__divider { width: 1px; height: 20px; background: var(--glass-border); }
+    .nav__title { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-muted); }
+
+    /* ── Page header ── */
+    .page-header { padding: 5rem clamp(1.5rem,5vw,4rem) 3rem; text-align: center; position: relative; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,0,0,0.20) 0%, transparent 65%), var(--abyss); border-bottom: 1px solid var(--glass-border); }
+    .page-header::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 55%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); }
+    .page-eyebrow { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .page-title { font-family: var(--font-display); font-size: clamp(2rem,5vw,3.5rem); font-weight: 700; letter-spacing: -0.01em; color: var(--cream); line-height: 1.1; }
+    .page-meta { margin-top: 1rem; font-size: 0.9375rem; color: var(--cream-dim); letter-spacing: 0.01em; }
+
+    /* ── Quick contact chips ── */
+    .quick-contact { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .quick-chip { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 500; color: var(--cream-mid); background: rgba(13,2,5,0.6); border: 1px solid var(--glass-border); border-radius: 99px; padding: 0.5rem 1.1rem; transition: border-color 0.2s, color 0.2s, background 0.2s; text-decoration: none; }
+    .quick-chip:hover { border-color: rgba(201,162,39,0.4); color: var(--gold-light); background: var(--gold-subtle); text-decoration: none; }
+    .quick-chip svg { flex-shrink: 0; opacity: 0.7; }
+
+    /* ── Layout ── */
+    .page-body { max-width: 1280px; margin: 0 auto; padding: 3rem clamp(1.5rem,5vw,4rem) 6rem; display: grid; grid-template-columns: 240px 1fr; gap: 4rem; align-items: start; }
+
+    /* ── TOC ── */
+    .toc { position: sticky; top: 80px; background: rgba(13,2,5,0.65); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .toc__title { font-family: var(--font-display); font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--glass-border); }
+    .toc__list { display: flex; flex-direction: column; gap: 0.1rem; }
+    .toc__link { display: block; font-size: 0.8rem; color: var(--cream-muted); padding: 0.35rem 0.5rem; border-radius: 6px; transition: background 0.15s, color 0.15s; line-height: 1.4; text-decoration: none; }
+    .toc__link:hover { background: var(--gold-subtle); color: var(--gold-light); text-decoration: none; }
+    .toc__link.is-active { color: var(--gold); background: var(--gold-subtle); }
+    .toc__sub { padding-left: 0.75rem; font-size: 0.75rem; opacity: 0.8; }
+
+    /* ── Main content ── */
+    .content { display: flex; flex-direction: column; gap: 3.5rem; }
+    .content-section { scroll-margin-top: 90px; }
+    .content-section__title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; letter-spacing: 0.02em; color: var(--cream); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; gap: 0.75rem; }
+    .content-section__num { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; color: var(--gold-muted); background: var(--gold-subtle); border: 1px solid var(--gold-border); border-radius: 99px; padding: 0.2rem 0.6rem; flex-shrink: 0; }
+
+    .content p { font-size: var(--text-base); color: var(--cream-mid); line-height: 1.8; margin-bottom: 1rem; }
+    .content p:last-child { margin-bottom: 0; }
+    .content h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: var(--cream); margin: 1.5rem 0 0.6rem; }
+    .content ul { margin: 0.75rem 0 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .content ul li { font-size: var(--text-base); color: var(--cream-mid); padding-left: 1.5rem; position: relative; line-height: 1.7; }
+    .content ul li::before { content: '\u2736'; position: absolute; left: 0; color: var(--gold-muted); font-size: 0.5rem; top: 0.5rem; }
+    .content strong { color: var(--cream); font-weight: 600; }
+    .content em { color: var(--gold-muted); font-style: italic; }
+
+    /* Info / warning boxes */
+    .info-box { background: var(--gold-subtle); border: 1px solid var(--gold-border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0; }
+    .info-box p { color: var(--cream-mid); margin-bottom: 0; }
+    .info-box strong { color: var(--gold-light); }
+
+    /* ── About card ── */
+    .about-card { background: rgba(13,2,5,0.6); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem; overflow: hidden; position: relative; }
+    .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); }
+    .about-card__flag { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .about-card__studio { font-family: var(--font-display); font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 0.4rem; }
+    .about-card__name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--cream); letter-spacing: 0.01em; margin-bottom: 1rem; }
+    .about-card__desc { font-size: var(--text-base); color: var(--cream-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+    .about-card__details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .about-card__detail { display: flex; flex-direction: column; gap: 0.2rem; }
+    .about-card__detail-label { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-muted); }
+    .about-card__detail-value { font-size: 0.875rem; color: var(--cream-mid); }
+    .about-card__detail-value a { color: var(--gold); }
+    .about-card__detail-value a:hover { color: var(--gold-light); }
+
+    /* ── Contact methods ── */
+    .contact-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.25rem 0; }
+    .contact-method { background: rgba(13,2,5,0.7); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; transition: border-color 0.2s; text-decoration: none; }
+    .contact-method:hover { border-color: rgba(201,162,39,0.35); text-decoration: none; }
+    .contact-method__icon { width: 38px; height: 38px; background: var(--gold-subtle); border: 1px solid var(--gold-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .contact-method__icon svg { color: var(--gold-muted); }
+    .contact-method__label { font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-muted); }
+    .contact-method__value { font-size: 0.875rem; color: var(--cream); font-weight: 500; }
+    .contact-method__note { font-size: 0.75rem; color: var(--cream-dim); }
+
+    /* ── Contact form ── */
+    .form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label { font-size: 0.8125rem; font-weight: 500; color: var(--cream); letter-spacing: 0.04em; }
+    .form-label span { color: var(--gold-muted); margin-left: 0.2rem; }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(13,2,5,0.7);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--cream);
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--cream-dim); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(201,162,39,0.5); background: rgba(13,2,5,0.85); }
+    .form-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a08030' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+    .form-select option { background: #1a0508; color: var(--cream); }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+    .form-hint { font-size: 0.75rem; color: var(--cream-dim); margin-top: 0.2rem; }
+    .form-submit { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--font-display); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--void); background: linear-gradient(135deg, var(--gold-light), var(--gold)); border: none; border-radius: 10px; padding: 0.875rem 2rem; cursor: pointer; transition: opacity 0.2s, transform 0.15s; align-self: flex-start; }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+    .form-note { font-size: 0.75rem; color: var(--cream-dim); margin-top: -0.5rem; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-item { background: rgba(13,2,5,0.55); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item:hover { border-color: rgba(201,162,39,0.2); }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 1.1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; cursor: pointer; font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; color: var(--cream); line-height: 1.4; }
+    .faq-q svg { flex-shrink: 0; color: var(--gold-muted); transition: transform 0.25s; }
+    .faq-item.is-open .faq-q svg { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; padding: 0 1.25rem; }
+    .faq-item.is-open .faq-a { max-height: 400px; padding: 0 1.25rem 1.1rem; }
+    .faq-a p { font-size: 0.9rem; color: var(--cream-mid); line-height: 1.75; }
+    .faq-a a { color: var(--gold); }
+    .faq-a a:hover { color: var(--gold-light); }
+    .faq-a strong { color: var(--cream); }
+    .faq-group-label { font-family: var(--font-display); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-muted); margin: 1.5rem 0 0.75rem; padding-left: 0.25rem; }
+    .faq-group-label:first-child { margin-top: 0; }
+
+    /* ── Other pages ── */
+    .pages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .page-link-card { background: rgba(13,2,5,0.6); border: 1px solid var(--glass-border); border-radius: 14px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .page-link-card:hover { border-color: rgba(201,162,39,0.35); background: var(--gold-subtle); text-decoration: none; }
+    .page-link-card__icon { color: var(--gold-muted); margin-bottom: 0.25rem; }
+    .page-link-card__title { font-family: var(--font-display); font-size: 0.875rem; font-weight: 600; color: var(--cream); letter-spacing: 0.02em; }
+    .page-link-card__desc { font-size: 0.8rem; color: var(--cream-dim); line-height: 1.5; }
+
+    /* ── Footer ── */
+    .page-footer { background: var(--void); border-top: 1px solid var(--glass-border); padding: 2rem clamp(1.5rem,5vw,4rem); text-align: center; }
+    .page-footer__inner { max-width: 1280px; margin: 0 auto; }
+    .page-footer__links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .page-footer__link { font-size: 0.8125rem; color: var(--cream-muted); transition: color 0.2s; }
+    .page-footer__link:hover { color: var(--gold-muted); text-decoration: none; }
+    .page-footer__copy { font-size: 0.75rem; color: var(--cream-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .page-body { grid-template-columns: 1fr; gap: 2rem; }
+      .toc { position: static; display: none; }
+      .contact-methods { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .pages-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .about-card__details { grid-template-columns: 1fr; }
+      .pages-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__back" aria-label="Back to Vespera">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back
+      </a>
+      <div class="nav__divider"></div>
+      <a href="/"><img src="../assets/logo.png" alt="Vespera" class="nav__logo"></a>
+      <div class="nav__divider"></div>
+      <span class="nav__title">Support</span>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <p class="page-eyebrow">Vespera Support</p>
+    <h1 class="page-title">How Can We Help?</h1>
+    <p class="page-meta">We&rsquo;re a small team, but we care deeply. We will get back to you.</p>
+    <div class="quick-contact">
+      <a href="mailto:hello@oakdev.app" class="quick-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        hello@oakdev.app
+      </a>
+      <a href="tel:+46708105766" class="quick-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +46 70 810 57 66
+      </a>
+      <a href="#contact-form" class="quick-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Send a message
+      </a>
+    </div>
+  </header>
+
+  <div class="page-body">
+
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc__title">Contents</div>
+      <nav class="toc__list">
+        <a href="#s1" class="toc__link">1. About OakDev &amp; AI</a>
+        <a href="#s2" class="toc__link">2. Contact Us</a>
+        <a href="#s3" class="toc__link">3. Send a Message</a>
+        <a href="#s4" class="toc__link">4. FAQ</a>
+        <a href="#s4a" class="toc__link toc__sub">Getting Started</a>
+        <a href="#s4b" class="toc__link toc__sub">Reflections</a>
+        <a href="#s4c" class="toc__link toc__sub">Blessed Tier</a>
+        <a href="#s4d" class="toc__link toc__sub">Account &amp; Data</a>
+        <a href="#s4e" class="toc__link toc__sub">Technical Issues</a>
+        <a href="#s5" class="toc__link">5. Other Resources</a>
+      </nav>
+    </aside>
+
+    <main class="content" id="content">
+
+      <!-- 1. About -->
+      <section class="content-section" id="s1">
+        <h2 class="content-section__title"><span class="content-section__num">01</span>About OakDev &amp; AI AB</h2>
+        <div class="about-card">
+          <div class="about-card__flag">&#127480;&#127466;</div>
+          <div class="about-card__studio">App Studio &mdash; Uddevalla, Sweden</div>
+          <div class="about-card__name">OakDev &amp; AI AB</div>
+          <p class="about-card__desc">OakDev &amp; AI AB is an independent app studio based in Uddevalla, Sweden. We build focused, purposeful apps &mdash; tools that serve a specific need and serve it well, without noise, ads, or distraction. Vespera is our Catholic spiritual companion: one app, one purpose, built with care for the faithful.</p>
+          <div class="about-card__details">
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">Address</span>
+              <span class="about-card__detail-value">Kristevik 633<br>451 96 Uddevalla, Sweden</span>
+            </div>
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">Email</span>
+              <span class="about-card__detail-value"><a href="mailto:hello@oakdev.app">hello@oakdev.app</a></span>
+            </div>
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">Phone</span>
+              <span class="about-card__detail-value"><a href="tel:+46708105766">+46 70 810 57 66</a></span>
+            </div>
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">Reg. no.</span>
+              <span class="about-card__detail-value">559431-6787</span>
+            </div>
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">VAT no.</span>
+              <span class="about-card__detail-value">SE559431678701</span>
+            </div>
+            <div class="about-card__detail">
+              <span class="about-card__detail-label">Country</span>
+              <span class="about-card__detail-value">Sweden (European Union)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Contact -->
+      <section class="content-section" id="s2">
+        <h2 class="content-section__title"><span class="content-section__num">02</span>Contact Us</h2>
+        <p>We are a small, dedicated team and we read every message we receive. Whether you have a question about Vespera, a problem to report, feedback to share, or a legal matter to raise &mdash; we are here. The best way to reach us is by email or through the form below.</p>
+
+        <div class="contact-methods">
+          <a href="mailto:hello@oakdev.app" class="contact-method">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </div>
+            <div class="contact-method__label">Email</div>
+            <div class="contact-method__value">hello@oakdev.app</div>
+            <div class="contact-method__note">Usually within 1&ndash;2 business days</div>
+          </a>
+          <a href="tel:+46708105766" class="contact-method">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-method__label">Phone</div>
+            <div class="contact-method__value">+46 70 810 57 66</div>
+            <div class="contact-method__note">Mon&ndash;Fri, 09:00&ndash;17:00 CET</div>
+          </a>
+          <div class="contact-method" style="cursor:default;">
+            <div class="contact-method__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-method__label">Office</div>
+            <div class="contact-method__value">Uddevalla, Sweden</div>
+            <div class="contact-method__note">Kristevik 633, 451 96</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <p><strong>Response times:</strong> We aim to respond to all emails within 1&ndash;2 business days. For account deletion requests, we respond within 5 business days. For GDPR data requests, we respond within 30 days as required by law.</p>
+        </div>
+      </section>
+
+      <!-- 3. Form -->
+      <section class="content-section" id="s3">
+        <h2 class="content-section__title" id="contact-form"><span class="content-section__num">03</span>Send a Message</h2>
+        <p>Fill in the form below and we will get back to you at the email address you provide. All fields marked <span style="color:var(--gold-muted)">&#42;</span> are required.</p>
+
+        <form class="form" id="supportForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First name <span>*</span></label>
+              <input class="form-input" type="text" id="fname" name="fname" placeholder="Your first name" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last name</label>
+              <input class="form-input" type="text" id="lname" name="lname" placeholder="Your last name" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email address <span>*</span></label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            <p class="form-hint">Use the email address linked to your Vespera account if your question is account-related.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="topic">Topic <span>*</span></label>
+            <select class="form-select" id="topic" name="topic" required>
+              <option value="" disabled selected>Select a topic&hellip;</option>
+              <option value="general">General question</option>
+              <option value="reflections">Reflections system</option>
+              <option value="blessed">Blessed subscription</option>
+              <option value="technical">Technical issue / bug</option>
+              <option value="account">Account or sign-in</option>
+              <option value="billing">Billing or payment</option>
+              <option value="privacy">Privacy or data request</option>
+              <option value="delete">Account deletion</option>
+              <option value="feedback">Feedback or suggestion</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="device">Device <span style="color:var(--cream-dim);font-weight:400">(optional)</span></label>
+            <select class="form-select" id="device" name="device">
+              <option value="" selected>Select your device&hellip;</option>
+              <option value="iphone">iPhone / iPad (iOS)</option>
+              <option value="android">Android</option>
+              <option value="both">Both platforms</option>
+              <option value="na">Not applicable</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message <span>*</span></label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Describe your question or issue in as much detail as you can. If it&rsquo;s a bug, let us know what happened, what you expected, and how to reproduce it." required></textarea>
+          </div>
+
+          <p class="form-note">By submitting this form you agree that we may use your contact details to respond to your enquiry. See our <a href="/privacy">Privacy Policy</a> for details.</p>
+
+          <button type="submit" class="form-submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+
+        <div id="formSuccess" style="display:none;">
+          <div class="info-box" style="margin-top:1rem;">
+            <p><strong>Message sent!</strong> Thank you &mdash; we have received your message and will respond to <span id="successEmail" style="color:var(--gold-light)"></span> within 1&ndash;2 business days.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. FAQ -->
+      <section class="content-section" id="s4">
+        <h2 class="content-section__title"><span class="content-section__num">04</span>Frequently Asked Questions</h2>
+
+        <!-- Getting Started -->
+        <div class="faq-group-label" id="s4a">Getting Started</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What is Vespera?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Vespera is a Catholic spiritual companion app for iOS and Android. It delivers personalised daily reflections, prayers, and devotional content across eight spiritual categories &mdash; from Morning Prayer and Evening Vespers to Gospel Insights and Eucharistic Devotion. The app is built to support your faith journey with depth, beauty, and simplicity.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Where can I download Vespera?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Vespera is available on the <strong>Apple App Store</strong> (iPhone and iPad) and the <strong>Google Play Store</strong> (Android devices). Search for &ldquo;Vespera&rdquo; or visit <a href="/">vespera.oakdev.app</a> for direct links.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Is Vespera free to use?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Vespera is free to download. New users receive a complimentary allocation of Reflections to get started. Additional Reflections can be purchased within the app, and the <strong>Blessed</strong> tier (a subscription) provides a generous monthly Reflections allowance plus exclusive content. There are no advertisements of any kind in Vespera, ever.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Which Catholic tradition does Vespera follow?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Vespera is rooted in the Roman Rite of the Catholic Church. Our content draws on Sacred Scripture (using publicly available translations), the Roman Calendar (saints&rsquo; feast days, liturgical seasons), and classical Catholic devotional tradition. We aim for content that is consistent with the Catechism of the Catholic Church and magisterial teaching.</p></div>
+          </div>
+        </div>
+
+        <!-- Reflections -->
+        <div class="faq-group-label" id="s4b">Reflections System</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What are Reflections?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Reflections are the in-app units used to access spiritual content categories. Each time you tap a category to receive content, one (1) Reflection is deducted from your balance. They are not real money and have no cash value &mdash; they are simply a way of pacing your spiritual content engagement.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why have I run out of Reflections?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Each category visit consumes one Reflection. If your balance is empty, you can purchase additional Reflections via in-app purchase, or subscribe to the <strong>Blessed</strong> tier which includes a monthly allocation of Reflections. Reflections are consumed at the point of category access, regardless of how much time you spend reading the content.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Do Reflections expire?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Purchased Reflections do not expire while your account is active. Promotional or complimentary Reflections (e.g. the welcome allocation) may have an expiry date, which will be displayed in the app when they are issued.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I get a refund on Reflections I purchased but haven&rsquo;t used?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>All purchases are processed by Apple or Google through their respective stores. Refund requests must be directed to them directly. For Apple, visit <strong>reportaproblem.apple.com</strong>. For Google, visit the <strong>Google Play Help Centre</strong>. Please see our <a href="/terms#s8">Terms of Service (Refunds section)</a> for further details, including EU consumer rights.</p></div>
+          </div>
+        </div>
+
+        <!-- Blessed -->
+        <div class="faq-group-label" id="s4c">Blessed Tier</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What is the Blessed tier?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p><strong>Blessed</strong> is Vespera&rsquo;s optional subscription tier. It provides a generous monthly Reflections allowance, exclusive prayer collections and devotional content, access to advanced spiritual categories, and priority access to new content as it is released. It is designed for those who want to go deeper in their faith journey with Vespera.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I cancel my Blessed subscription?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>Cancel directly through your Platform Store. OakDev cannot cancel it on your behalf.</p>
+              <p><strong>iOS:</strong> Settings &rarr; [Your Name] &rarr; Subscriptions &rarr; Vespera Blessed &rarr; Cancel Subscription.</p>
+              <p><strong>Android:</strong> Google Play Store &rarr; Profile &rarr; Payments &amp; subscriptions &rarr; Subscriptions &rarr; Vespera &rarr; Cancel.</p>
+              <p>You retain Blessed access until the end of your current billing period after cancelling.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Will I be charged again after cancelling?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>No. Once you cancel in your Platform Store, your subscription will not auto-renew. You will keep Blessed access until the end of the current paid period, and no further charges will be made. Allow up to 24 hours for cancellation to take effect in the app.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              My Blessed subscription is active but the app shows standard access &mdash; what do I do?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>First, try signing out of the app and signing back in to refresh your subscription status. If the problem persists, go to the app&rsquo;s Settings and look for a <strong>Restore Purchases</strong> option. If it still doesn&rsquo;t resolve, please contact us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with your registered email address and we will investigate.</p></div>
+          </div>
+        </div>
+
+        <!-- Account & Data -->
+        <div class="faq-group-label" id="s4d">Account &amp; Data</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I delete my account?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>You can delete your account directly in the app: <strong>Settings &rarr; Account &rarr; Delete Account</strong>, then confirm. Alternatively, email us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with the subject &ldquo;Account Deletion Request&rdquo;. Full details are on our <a href="/delete-account">Delete Account page</a>.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What data do you collect about me?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>We collect only what is necessary to provide the service: account credentials, content access history, Reflections balance, preferences, and device identifiers for push notifications. We do <strong>not</strong> sell your data, display ads, or share your data with advertisers. Full details are in our <a href="/privacy">Privacy Policy</a>.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I request a copy of my data (GDPR data portability)?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Email us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with the subject &ldquo;Data Access Request&rdquo; and include the email address linked to your account. We will provide a copy of your personal data in a portable format within 30 days, free of charge, as required by GDPR Article 20.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              I forgot my password. How do I reset it?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>On the sign-in screen, tap <strong>Forgot password?</strong> and enter your email address. We will send a password reset link to your registered email. If you do not receive it within a few minutes, check your spam folder. If you still have trouble, contact us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>.</p></div>
+          </div>
+        </div>
+
+        <!-- Technical -->
+        <div class="faq-group-label" id="s4e">Technical Issues</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              The app is crashing or not loading. What should I do?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Try these steps in order: <strong>1)</strong> Force-close and reopen the app. <strong>2)</strong> Check your internet connection. <strong>3)</strong> Restart your device. <strong>4)</strong> Check the App Store / Google Play for a pending update and install it. <strong>5)</strong> If the issue persists, uninstall and reinstall the app (your account data is saved to the cloud). If none of these work, please contact us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with your device model and OS version.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              I&rsquo;m not receiving push notifications. How do I fix this?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>First, check that notifications are enabled for Vespera in your device settings: <strong>iOS:</strong> Settings &rarr; Vespera &rarr; Notifications. <strong>Android:</strong> Settings &rarr; Apps &rarr; Vespera &rarr; Notifications. Also check that Do Not Disturb is not active. If notifications are enabled but still not arriving, sign out and back into the app to refresh your push token.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              I found a bug. How do I report it?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>We genuinely appreciate bug reports &mdash; they help us make Vespera better for everyone. Please email <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> or use the contact form on this page. Include: what happened, what you expected, the steps to reproduce the bug, your device model (e.g. iPhone 15), and your OS version (e.g. iOS 17.4). Screenshots or screen recordings are extremely helpful.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              The content seems incorrect or theologically inaccurate. What should I do?
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>We take theological accuracy seriously. If you believe a piece of content is incorrect, inconsistent with Catholic teaching, or otherwise problematic, please email us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with the category name, the specific content in question, and your concern. We will review it promptly. Please note that some content is AI-assisted; while we review it carefully, errors can occasionally occur.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Other resources -->
+      <section class="content-section" id="s5">
+        <h2 class="content-section__title"><span class="content-section__num">05</span>Other Resources</h2>
+        <p>Looking for specific legal information or account management options? These pages have what you need.</p>
+        <div class="pages-grid">
+          <a href="/privacy" class="page-link-card">
+            <div class="page-link-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="page-link-card__title">Privacy Policy</div>
+            <div class="page-link-card__desc">How we collect, use, and protect your personal data under GDPR.</div>
+          </a>
+          <a href="/terms" class="page-link-card">
+            <div class="page-link-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="page-link-card__title">Terms of Service</div>
+            <div class="page-link-card__desc">The legal agreement governing your use of Vespera.</div>
+          </a>
+          <a href="/delete-account" class="page-link-card">
+            <div class="page-link-card__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            </div>
+            <div class="page-link-card__title">Delete Account</div>
+            <div class="page-link-card__desc">Permanently remove your account and all your data.</div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="page-footer">
+    <div class="page-footer__inner">
+      <div class="page-footer__links">
+        <a href="/"               class="page-footer__link">Home</a>
+        <a href="/privacy"        class="page-footer__link">Privacy Policy</a>
+        <a href="/terms"          class="page-footer__link">Terms of Service</a>
+        <a href="/support"        class="page-footer__link">Support</a>
+        <a href="/delete-account" class="page-footer__link">Delete Account</a>
+      </div>
+      <p class="page-footer__copy">&copy; 2026 OakDev &amp; AI AB. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ── TOC active link ── */
+    (function () {
+      const links    = document.querySelectorAll('.toc__link[href^="#"]');
+      const sections = document.querySelectorAll('.content-section, .faq-group-label[id]');
+      if (!links.length) return;
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              links.forEach(l => l.classList.remove('is-active'));
+              const active = document.querySelector('.toc__link[href="#' + entry.target.id + '"]');
+              if (active) active.classList.add('is-active');
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+      );
+      sections.forEach(s => { if (s.id) observer.observe(s); });
+    })();
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('is-open');
+        // close all
+        document.querySelectorAll('.faq-item.is-open').forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        // open clicked (unless it was already open)
+        if (!isOpen) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ── Contact form (mailto fallback for static site) ── */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const fname   = form.fname.value.trim();
+      const email   = form.email.value.trim();
+      const topic   = form.topic.options[form.topic.selectedIndex].text;
+      const device  = form.device.value ? form.device.options[form.device.selectedIndex].text : 'Not specified';
+      const message = form.message.value.trim();
+
+      const subject = encodeURIComponent('Vespera Support: ' + topic);
+      const body    = encodeURIComponent(
+        'Name: ' + fname + (form.lname.value ? ' ' + form.lname.value.trim() : '') + '\n' +
+        'Email: ' + email + '\n' +
+        'Topic: ' + topic + '\n' +
+        'Device: ' + device + '\n\n' +
+        message
+      );
+
+      window.location.href = 'mailto:hello@oakdev.app?subject=' + subject + '&body=' + body;
+
+      // Show success state
+      form.style.display = 'none';
+      const success = document.getElementById('formSuccess');
+      const successEmail = document.getElementById('successEmail');
+      successEmail.textContent = email;
+      success.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

@@ -39,10 +39,10 @@
   align-items: center;
 }
 
-.cross-emblem__svg {
-  width: 100px;
-  height: 140px;
-  filter: drop-shadow(0 0 20px var(--gold-glow)) drop-shadow(0 0 40px rgba(201, 162, 39, 0.15));
+.cross-emblem__img {
+  width: 200px;
+  height: 123px; /* preserves viewBox 1136:700 aspect ratio */
+  filter: drop-shadow(0 0 24px var(--gold-glow)) drop-shadow(0 0 48px rgba(201, 162, 39, 0.2));
   animation: cross-pulse 4s ease-in-out infinite;
   z-index: 2;
   position: relative;

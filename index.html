@@ -185,16 +185,21 @@
         <div class="cross-emblem" aria-hidden="true">
           <div class="cross-emblem__ring cross-emblem__ring--2"></div>
           <div class="cross-emblem__ring cross-emblem__ring--1"></div>
-          <svg class="cross-emblem__svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="40" y="0"  width="20" height="140" rx="3" fill="url(#crossGold)"/>
-            <rect x="0"  y="35" width="100" height="20"  rx="3" fill="url(#crossGold)"/>
+          <!-- Logo cross: white bg removed via feColorMatrix, "Vespera" text cropped -->
+          <svg class="cross-emblem__img" viewBox="200 0 1136 700"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
-              <linearGradient id="crossGold" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-                <stop offset="0%"   stop-color="#f5d97a"/>
-                <stop offset="50%"  stop-color="#c9a227"/>
-                <stop offset="100%" stop-color="#7a600f"/>
-              </linearGradient>
+              <filter id="rmWhiteBg" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                  values="1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          -1 -1 -1 3 0"/>
+              </filter>
             </defs>
+            <image href="assets/logo.png" x="0" y="0"
+                   width="1536" height="1024"
+                   filter="url(#rmWhiteBg)"/>
           </svg>
         </div>
       </div>

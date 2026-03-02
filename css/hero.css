@@ -246,6 +246,12 @@
     width: 260px;
     justify-content: center;
   }
+
+  /* Hide scroll indicator on mobile — content stack is taller than viewport
+     so absolute positioning causes it to collide with the badge row */
+  .hero__scroll {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {

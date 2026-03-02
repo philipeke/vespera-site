@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vespera Terms of Service — The legal agreement between you and OakDev &amp; AI AB governing your use of the Vespera app.">
+  <meta name="robots" content="index, follow">
+  <title>Terms of Service — Vespera</title>
+
+  <link rel="icon" type="image/png" href="../assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+
+  <style>
+    /* ── Base ── */
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--cream);
+      background-color: var(--abyss);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--gold); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--gold-light); text-decoration: underline; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    ul, ol { list-style: none; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--abyss); }
+    ::-webkit-scrollbar-thumb { background: var(--crimson-700); border-radius: 99px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: rgba(13, 2, 5, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .nav__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav__back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--cream-mid);
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav__back:hover { color: var(--gold); text-decoration: none; }
+    .nav__back svg { flex-shrink: 0; }
+    .nav__logo { height: 30px; width: auto; filter: drop-shadow(0 0 6px rgba(201,162,39,0.2)); }
+    .nav__divider { width: 1px; height: 20px; background: var(--glass-border); }
+    .nav__title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 5rem clamp(1.5rem, 5vw, 4rem) 3rem;
+      text-align: center;
+      position: relative;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,0,0,0.20) 0%, transparent 65%),
+        var(--abyss);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 55%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+    }
+    .page-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .page-meta {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      color: var(--cream-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Layout ── */
+    .page-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem clamp(1.5rem, 5vw, 4rem) 6rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── TOC sidebar ── */
+    .toc {
+      position: sticky;
+      top: 80px;
+      background: rgba(13, 2, 5, 0.65);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .toc__title {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .toc__list { display: flex; flex-direction: column; gap: 0.1rem; }
+    .toc__link {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--cream-muted);
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+    .toc__link:hover { background: var(--gold-subtle); color: var(--gold-light); text-decoration: none; }
+    .toc__link.is-active { color: var(--gold); background: var(--gold-subtle); }
+
+    /* ── Policy content ── */
+    .policy { display: flex; flex-direction: column; gap: 3rem; }
+
+    .policy-section { scroll-margin-top: 90px; }
+
+    .policy-section__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .policy-section__num {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold-muted);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 99px;
+      padding: 0.2rem 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .policy p {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--cream-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .policy p:last-child { margin-bottom: 0; }
+
+    .policy h4 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .policy ul {
+      margin: 0.75rem 0 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .policy ul li {
+      font-size: var(--text-base);
+      color: var(--cream-mid);
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .policy ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold-muted);
+      font-size: 0.5rem;
+      top: 0.5rem;
+    }
+
+    .policy ol {
+      margin: 0.75rem 0 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      list-style: decimal;
+    }
+    .policy ol li {
+      font-size: var(--text-base);
+      color: var(--cream-mid);
+      line-height: 1.7;
+      padding-left: 0.5rem;
+    }
+
+    .policy strong { color: var(--cream); font-weight: 600; }
+    .policy em { color: var(--gold-muted); font-style: italic; }
+
+    /* Info box */
+    .info-box {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .info-box p { color: var(--cream-mid); margin-bottom: 0; }
+    .info-box strong { color: var(--gold-light); }
+
+    /* Warning box */
+    .warning-box {
+      background: rgba(139,0,0,0.12);
+      border: 1px solid var(--crimson-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .warning-box p { color: var(--cream-mid); margin-bottom: 0; }
+
+    /* Table */
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+    }
+    .policy-table th {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      background: var(--gold-subtle);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .policy-table td {
+      color: var(--cream-mid);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1rem;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .policy-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    /* Contact card */
+    .contact-card {
+      background: rgba(13,2,5,0.7);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .contact-card__name {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .contact-card__row {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--cream-dim);
+      margin-bottom: 0.4rem;
+      align-items: flex-start;
+    }
+    .contact-card__row span:first-child {
+      color: var(--gold-muted);
+      font-weight: 500;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--void);
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+    .page-footer__inner { max-width: 1280px; margin: 0 auto; }
+    .page-footer__links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .page-footer__link { font-size: 0.8125rem; color: var(--cream-muted); transition: color 0.2s; }
+    .page-footer__link:hover { color: var(--gold-muted); text-decoration: none; }
+    .page-footer__copy { font-size: 0.75rem; color: var(--cream-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .page-body { grid-template-columns: 1fr; gap: 2rem; }
+      .toc { position: static; display: none; }
+    }
+    @media (max-width: 480px) {
+      .page-header { padding: 3rem 1.5rem 2rem; }
+      .policy-table { font-size: 0.8rem; }
+      .policy-table th, .policy-table td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__back" aria-label="Back to Vespera">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back
+      </a>
+      <div class="nav__divider"></div>
+      <a href="/">
+        <img src="../assets/logo.png" alt="Vespera" class="nav__logo">
+      </a>
+      <div class="nav__divider"></div>
+      <span class="nav__title">Terms of Service</span>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <p class="page-eyebrow">Legal Documentation</p>
+    <h1 class="page-title">Terms of Service</h1>
+    <p class="page-meta">Effective date: 1 March 2026 &nbsp;·&nbsp; Last updated: 2 March 2026 &nbsp;·&nbsp; Version 1.0</p>
+  </header>
+
+  <!-- Body -->
+  <div class="page-body">
+
+    <!-- Table of Contents -->
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc__title">Contents</div>
+      <nav class="toc__list">
+        <a href="#s1"  class="toc__link">1. Acceptance of Terms</a>
+        <a href="#s2"  class="toc__link">2. Definitions</a>
+        <a href="#s3"  class="toc__link">3. App License</a>
+        <a href="#s4"  class="toc__link">4. Account Registration</a>
+        <a href="#s5"  class="toc__link">5. Reflections System</a>
+        <a href="#s6"  class="toc__link">6. Blessed Tier</a>
+        <a href="#s7"  class="toc__link">7. Purchases &amp; Billing</a>
+        <a href="#s8"  class="toc__link">8. Refunds &amp; Cancellation</a>
+        <a href="#s9"  class="toc__link">9. Intellectual Property</a>
+        <a href="#s10" class="toc__link">10. User Conduct</a>
+        <a href="#s11" class="toc__link">11. Third-Party Services</a>
+        <a href="#s12" class="toc__link">12. Content &amp; Accuracy</a>
+        <a href="#s13" class="toc__link">13. Privacy &amp; Data</a>
+        <a href="#s14" class="toc__link">14. Disclaimer of Warranties</a>
+        <a href="#s15" class="toc__link">15. Limitation of Liability</a>
+        <a href="#s16" class="toc__link">16. Indemnification</a>
+        <a href="#s17" class="toc__link">17. Termination</a>
+        <a href="#s18" class="toc__link">18. Changes to Terms</a>
+        <a href="#s19" class="toc__link">19. Governing Law</a>
+        <a href="#s20" class="toc__link">20. Dispute Resolution</a>
+        <a href="#s21" class="toc__link">21. Severability &amp; Waiver</a>
+        <a href="#s22" class="toc__link">22. Contact Us</a>
+      </nav>
+    </aside>
+
+    <!-- Terms Content -->
+    <main class="policy" id="policy">
+
+      <div class="info-box">
+        <p><strong>Please read carefully.</strong> These Terms of Service (<strong>"Terms"</strong>) constitute a legally binding agreement between you and OakDev &amp; AI AB, a company incorporated in Sweden, governing your access to and use of the Vespera mobile application and related services. By downloading, installing, or using Vespera, you confirm that you have read, understood, and agree to be bound by these Terms in their entirety. If you do not agree to these Terms, you must not use the App.</p>
+      </div>
+
+      <!-- 1 -->
+      <section class="policy-section" id="s1">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">01</span>
+          Acceptance of Terms
+        </h2>
+        <p>By accessing or using the Vespera application (<strong>"App"</strong>), website, or any services provided by OakDev &amp; AI AB (<strong>"we"</strong>, <strong>"us"</strong>, or <strong>"our"</strong>), you (<strong>"User"</strong> or <strong>"you"</strong>) agree to be bound by these Terms of Service, our <a href="/privacy">Privacy Policy</a>, and any additional guidelines or rules that may be applicable to specific services or features. These documents together constitute the complete and exclusive agreement between you and OakDev &amp; AI AB regarding the Services.</p>
+        <p>If you are accessing or using the App on behalf of an organisation or other legal entity, you represent that you have the authority to bind that entity to these Terms, and references to "you" shall include that entity.</p>
+        <p>You must be at least <strong>13 years of age</strong> to use the App. If you are between 13 and 18 (or the age of majority in your jurisdiction), you represent that your parent or legal guardian has reviewed and agreed to these Terms. By using the App, you represent and warrant that you meet this age requirement.</p>
+        <div class="warning-box">
+          <p><strong>Important notice for EU/EEA consumers:</strong> Nothing in these Terms limits or excludes any statutory rights you may have under applicable mandatory consumer protection laws, including but not limited to the EU Consumer Rights Directive (2011/83/EU), the Swedish Consumer Purchase Act (<em>konsumentköplagen</em>), and the Swedish Distance and Off-Premises Contracts Act (<em>distansavtalslagen</em>). To the extent any provision of these Terms conflicts with such mandatory rights, the mandatory legal provisions shall prevail.</p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="policy-section" id="s2">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">02</span>
+          Definitions
+        </h2>
+        <p>The following terms have specific meanings throughout these Terms of Service:</p>
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Term</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>"App"</strong></td>
+              <td>The Vespera mobile application available on iOS (Apple App Store) and Android (Google Play Store).</td>
+            </tr>
+            <tr>
+              <td><strong>"Services"</strong></td>
+              <td>The App, the Website at vespera.oakdev.app, and all related features, content, and services provided by OakDev &amp; AI AB.</td>
+            </tr>
+            <tr>
+              <td><strong>"Content"</strong></td>
+              <td>All text, prayers, reflections, audio, graphics, images, and other materials available through the App.</td>
+            </tr>
+            <tr>
+              <td><strong>"Reflections"</strong></td>
+              <td>The in-app units used to access spiritual content categories. Each category visit consumes one (1) Reflection from your balance.</td>
+            </tr>
+            <tr>
+              <td><strong>"Blessed"</strong></td>
+              <td>The enhanced subscription tier offered within the App, providing access to additional Reflections and exclusive content.</td>
+            </tr>
+            <tr>
+              <td><strong>"Account"</strong></td>
+              <td>A registered user profile created within the App to access personalised Services.</td>
+            </tr>
+            <tr>
+              <td><strong>"Platform Store"</strong></td>
+              <td>Apple App Store or Google Play Store, through which the App is distributed and in-app purchases are processed.</td>
+            </tr>
+            <tr>
+              <td><strong>"OakDev"</strong></td>
+              <td>OakDev &amp; AI AB, a company registered in Sweden, VAT number SE559431678701.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 3 -->
+      <section class="policy-section" id="s3">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">03</span>
+          App License &amp; Permitted Use
+        </h2>
+        <p>Subject to your compliance with these Terms, OakDev &amp; AI AB grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable licence to download, install, and use the App on a mobile device that you own or control, solely for your personal, non-commercial spiritual enrichment purposes.</p>
+
+        <h4>What You May Do</h4>
+        <ul>
+          <li>Access and use the App and its Content for personal, non-commercial purposes.</li>
+          <li>Share individual pieces of Content via native device sharing features where explicitly permitted by the App.</li>
+          <li>Make reasonable backups through the standard device backup systems provided by your operating system or Platform Store.</li>
+        </ul>
+
+        <h4>What You May Not Do</h4>
+        <ul>
+          <li>Copy, reproduce, republish, upload, post, transmit, or distribute any Content without our express prior written permission.</li>
+          <li>Reverse-engineer, disassemble, decompile, or attempt to derive the source code of the App, except to the extent required by applicable law.</li>
+          <li>Modify, adapt, translate, or create derivative works based upon the App or any Content.</li>
+          <li>Remove, obscure, or alter any copyright, trademark, or other proprietary rights notices within the App.</li>
+          <li>Use the App in any manner that could damage, disable, overburden, or impair our servers or networks.</li>
+          <li>Use any automated script, bot, scraper, or other tool to access or extract data from the App.</li>
+          <li>Circumvent, disable, or otherwise interfere with any security-related features of the App.</li>
+          <li>Transfer, sell, rent, lend, or otherwise make the App or any Account available to any third party.</li>
+          <li>Use the App for any commercial purpose without our express written consent.</li>
+          <li>Use the App in any jurisdiction where such use would violate applicable local laws.</li>
+        </ul>
+
+        <p>This licence is effective until terminated. It will terminate automatically without notice from us if you fail to comply with any provision of these Terms. Upon termination, you must destroy all copies of the App in your possession.</p>
+      </section>
+
+      <!-- 4 -->
+      <section class="policy-section" id="s4">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">04</span>
+          Account Registration &amp; Security
+        </h2>
+        <p>Certain features of the App may require you to create an Account. When registering, you agree to:</p>
+        <ul>
+          <li>Provide accurate, current, and complete information during registration.</li>
+          <li>Maintain and promptly update your Account information to keep it accurate and current.</li>
+          <li>Keep your password and Account credentials strictly confidential and not share them with any third party.</li>
+          <li>Notify us immediately at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> of any unauthorised use of your Account or any other breach of security.</li>
+          <li>Take sole responsibility for all activities that occur under your Account.</li>
+        </ul>
+        <p>You may only create one Account per person. Creating multiple Accounts, including for the purpose of obtaining additional complimentary Reflections, is strictly prohibited and may result in the termination of all associated Accounts.</p>
+        <p>We reserve the right to refuse registration, cancel an Account, or remove or edit Content at our sole discretion, without liability to you, where we reasonably believe such action is necessary to protect the integrity of the Services or to comply with applicable law.</p>
+
+        <h4>Account Deletion</h4>
+        <p>You may request deletion of your Account at any time via the in-App account settings or by submitting a request at <a href="/delete-account">/delete-account</a>. Upon Account deletion, we will process your data in accordance with our <a href="/privacy">Privacy Policy</a>. Note that deletion of your Account does not automatically entitle you to a refund of any unused Reflections or remaining Blessed subscription period, except where required by applicable consumer law.</p>
+      </section>
+
+      <!-- 5 -->
+      <section class="policy-section" id="s5">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">05</span>
+          Reflections System
+        </h2>
+        <p>Vespera uses a unit-based system called <strong>Reflections</strong> to grant access to spiritual content categories. Understanding how this system works is essential to using the App.</p>
+
+        <h4>How Reflections Work</h4>
+        <ul>
+          <li>Each time you select and access a content category (e.g. Morning Prayer, Evening Vespers, Saint of the Day), one (1) Reflection is deducted from your balance.</li>
+          <li>Reflections are consumed at the point of category access, regardless of how much time you spend with the resulting content.</li>
+          <li>Reflections are account-bound, non-transferable, and have no cash or monetary value.</li>
+          <li>Reflections cannot be exchanged, refunded, or converted into any other currency, credit, or item of value.</li>
+        </ul>
+
+        <h4>Acquiring Reflections</h4>
+        <ul>
+          <li>New users may receive a complimentary allocation of Reflections upon Account creation, at OakDev's discretion.</li>
+          <li>Additional Reflections may be acquired through in-app purchases processed via the Platform Store.</li>
+          <li>Blessed tier subscribers receive a periodic allocation of Reflections as part of their subscription benefits.</li>
+          <li>Promotional Reflections may be issued at our discretion and may carry specific terms, expiration dates, or usage restrictions.</li>
+        </ul>
+
+        <h4>Expiry &amp; Balance</h4>
+        <p>Reflections acquired through in-app purchase do not expire while your Account remains active. Promotional or complimentary Reflections may carry an expiry date, which will be communicated at the time of issuance. We reserve the right to adjust, correct, or remove Reflections from any Account where fraud, technical error, or violation of these Terms is detected.</p>
+
+        <div class="warning-box">
+          <p><strong>No monetary value:</strong> Reflections are a digital access unit with no monetary value. They are not cryptocurrency, vouchers, or any form of financial instrument. OakDev &amp; AI AB is not obligated to compensate you for any unused Reflections upon termination of your Account, except where explicitly required by applicable mandatory consumer law.</p>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="policy-section" id="s6">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">06</span>
+          Blessed Tier
+        </h2>
+        <p>The <strong>Blessed</strong> tier is an optional enhanced subscription available within the App. It provides subscribers with access to a richer spiritual experience through expanded features and Content.</p>
+
+        <h4>Blessed Tier Benefits</h4>
+        <ul>
+          <li>A generous monthly allocation of Reflections, automatically credited to your Account at the start of each billing cycle.</li>
+          <li>Access to exclusive prayer collections, devotional content, and premium spiritual categories not available to standard users.</li>
+          <li>Priority access to newly published content and features.</li>
+          <li>A deeper, more immersive walk of faith through curated advanced spiritual guidance content.</li>
+        </ul>
+
+        <h4>Subscription Nature</h4>
+        <p>The Blessed tier is offered as a recurring subscription. By purchasing a Blessed subscription, you authorise recurring charges to your Platform Store payment method at the applicable subscription rate and frequency (monthly or annual, as selected). Your subscription will automatically renew at the end of each billing period unless cancelled in accordance with Section 8.</p>
+        <p>The features, content, and benefits included in the Blessed tier may be modified from time to time. We will provide reasonable notice of any material reduction in benefits. Continued use of the Blessed tier following such notice constitutes acceptance of the modified benefits.</p>
+
+        <h4>No Advertisements</h4>
+        <p>Vespera does not display any third-party advertisements to any users, including non-Blessed users. We are committed to keeping the App free from commercial interruption so that your spiritual journey remains undisturbed.</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="policy-section" id="s7">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">07</span>
+          In-App Purchases &amp; Billing
+        </h2>
+        <p>All in-app purchases, including the purchase of additional Reflections and the Blessed subscription, are processed exclusively through the Platform Store associated with your device (Apple App Store or Google Play Store). OakDev &amp; AI AB does not directly handle your payment card or payment instrument information.</p>
+
+        <h4>Payment Processing</h4>
+        <ul>
+          <li>Purchases are subject to the Platform Store's terms of sale and payment terms, which you are separately bound by.</li>
+          <li>Prices displayed in the App are in the currency applicable to your Platform Store region and may include applicable taxes.</li>
+          <li>OakDev &amp; AI AB has no visibility into or control over your payment method or billing information.</li>
+          <li>All billing disputes relating to payment processing must be directed to your Platform Store provider.</li>
+        </ul>
+
+        <h4>Pricing</h4>
+        <p>Prices for Reflections packages and the Blessed subscription are as displayed within the App at the time of purchase. Prices may vary by region and are subject to change. OakDev &amp; AI AB reserves the right to modify pricing at any time, with changes taking effect upon your next renewal or new purchase. We will not retroactively charge you for a current subscription period at a new, higher price without your explicit consent.</p>
+
+        <h4>Taxes</h4>
+        <p>You are responsible for all taxes, duties, and levies associated with your purchases, to the extent not already included in the displayed price. For users in the European Union, value-added tax (VAT) may apply and will be reflected in the purchase price in accordance with applicable EU VAT rules.</p>
+
+        <h4>Failed Payments</h4>
+        <p>If a recurring payment fails, your Blessed subscription will enter a grace period as determined by the Platform Store. If payment cannot be successfully collected during the grace period, your subscription will be suspended and you will lose access to Blessed tier benefits until payment is successfully collected or you renew your subscription.</p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Purchase Type</th>
+              <th>Payment Processor</th>
+              <th>Recurrence</th>
+              <th>Dispute Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reflections (one-time)</td>
+              <td>Platform Store</td>
+              <td>One-time</td>
+              <td>Platform Store support</td>
+            </tr>
+            <tr>
+              <td>Blessed (monthly)</td>
+              <td>Platform Store</td>
+              <td>Monthly auto-renew</td>
+              <td>Platform Store support</td>
+            </tr>
+            <tr>
+              <td>Blessed (annual)</td>
+              <td>Platform Store</td>
+              <td>Annual auto-renew</td>
+              <td>Platform Store support</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 8 -->
+      <section class="policy-section" id="s8">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">08</span>
+          Refunds &amp; Cancellation
+        </h2>
+
+        <h4>Cancellation of Blessed Subscription</h4>
+        <p>You may cancel your Blessed subscription at any time through the settings of your Platform Store account. Cancellation will take effect at the end of your current billing period. You will retain access to Blessed tier benefits until the end of the paid period. Cancellation does not entitle you to a pro-rata refund for any unused portion of the current subscription period, except as required by applicable mandatory law.</p>
+        <p>To cancel on iOS: Settings → [Your Name] → Subscriptions → Vespera Blessed → Cancel Subscription.</p>
+        <p>To cancel on Android: Google Play Store → Account → Subscriptions → Vespera → Cancel.</p>
+
+        <h4>Refund Policy — General</h4>
+        <p>Because all purchases are processed through the Platform Store, all refund requests must be directed to the Platform Store in accordance with their refund policies. OakDev &amp; AI AB does not have the ability to process refunds directly. The refund eligibility is determined by Apple and Google, respectively.</p>
+
+        <h4>EU/EEA Statutory Right of Withdrawal</h4>
+        <p>If you are a consumer in the European Union or European Economic Area, you have a statutory right to withdraw from a contract for digital content within <strong>fourteen (14) calendar days</strong> of purchase (<em>ångerrätt</em> under the Swedish Distance and Off-Premises Contracts Act, implementing EU Directive 2011/83/EU), provided that you have not already begun accessing the digital content.</p>
+        <p>By initiating the download or use of Reflections or accessing Blessed tier content immediately upon purchase, you <strong>expressly request that performance of the digital content contract begin immediately</strong> and you acknowledge that you thereby <strong>waive your right of withdrawal</strong> once access has commenced, as permitted by Article 16(m) of Directive 2011/83/EU.</p>
+        <p>If you have not yet accessed the purchased content, you may exercise your right of withdrawal by contacting us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> within 14 days. We will process the refund via the Platform Store, which may take up to 10 business days.</p>
+
+        <h4>Unused Reflections</h4>
+        <p>Reflections are consumable digital items. Once purchased, unused Reflections are non-refundable except as required by mandatory applicable law or where a verified technical error on our part prevented access to the content.</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="policy-section" id="s9">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">09</span>
+          Intellectual Property Rights
+        </h2>
+        <p>All intellectual property rights in and to the App, the Website, and all Content — including but not limited to prayers, reflections, spiritual texts, icons, logos, graphics, sounds, music, software code, and the compilation thereof — are owned by or licensed to OakDev &amp; AI AB and are protected by copyright, trademark, and other intellectual property laws of Sweden and international conventions.</p>
+
+        <h4>Our Rights</h4>
+        <ul>
+          <li>The "Vespera" name, logo, and all associated marks are trademarks of OakDev &amp; AI AB. You may not use them without our prior written consent.</li>
+          <li>The structure, organisation, look-and-feel, and overall presentation of the App are protected by copyright and trade dress rights.</li>
+          <li>AI-assisted Content generated within the App remains the intellectual property of OakDev &amp; AI AB or its licensors.</li>
+        </ul>
+
+        <h4>Third-Party Works</h4>
+        <p>Certain Content in the App may be derived from or incorporate public domain religious texts, including Scripture passages and classical Catholic prayers. Where such texts are in the public domain, no proprietary claim is made to those underlying texts themselves. However, our selection, arrangement, formatting, translation, commentary, and original additions to such texts remain proprietary.</p>
+
+        <h4>Feedback</h4>
+        <p>If you submit ideas, suggestions, feedback, or other information to us regarding the App (<strong>"Feedback"</strong>), you grant OakDev &amp; AI AB a worldwide, perpetual, irrevocable, royalty-free, fully sublicensable licence to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such Feedback in any form and for any purpose, without compensation to you. You represent that any Feedback you provide does not infringe any third party's rights.</p>
+      </section>
+
+      <!-- 10 -->
+      <section class="policy-section" id="s10">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">10</span>
+          User Conduct &amp; Prohibited Activities
+        </h2>
+        <p>You agree to use the App only for lawful purposes and in a manner consistent with its Catholic spiritual mission and the dignity of the faith community. The following conduct is strictly prohibited:</p>
+
+        <h4>Prohibited Activities</h4>
+        <ul>
+          <li>Using the App to distribute, share, or promote content that is hateful, discriminatory, defamatory, obscene, or that violates any applicable law.</li>
+          <li>Attempting to access, tamper with, or damage any part of the App's infrastructure, servers, databases, or networks.</li>
+          <li>Impersonating any person or entity, or misrepresenting your affiliation with any person or entity.</li>
+          <li>Using the App in a way that could be construed as blasphemous, sacrilegious, or as denigrating the Catholic faith or other religious traditions.</li>
+          <li>Circumventing any access controls, authentication mechanisms, or measures designed to limit access to certain features or Content.</li>
+          <li>Using automated means to create multiple Accounts, farm Reflections, or otherwise manipulate the App's systems.</li>
+          <li>Interfering with any other user's access to or enjoyment of the App.</li>
+          <li>Collecting or harvesting any personally identifiable information from the App.</li>
+          <li>Using the App to conduct any form of unsolicited advertising or promotional activities.</li>
+          <li>Engaging in any activity that violates the Apple App Store Guidelines or Google Play Developer Programme Policies as applicable.</li>
+        </ul>
+
+        <p>We reserve the right, without liability to you, to investigate any suspected violation of these conduct requirements and to take any action we deem appropriate, including suspending or terminating your Account and/or access to the App, and reporting the matter to relevant law enforcement authorities.</p>
+      </section>
+
+      <!-- 11 -->
+      <section class="policy-section" id="s11">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">11</span>
+          Third-Party Services &amp; Links
+        </h2>
+        <p>The App and Website may contain links to third-party websites, services, or resources. These links are provided for your convenience only. OakDev &amp; AI AB has no control over the content, privacy practices, or terms of such third-party services and makes no representations or warranties regarding them.</p>
+        <p>Your use of the App is also subject to the terms and privacy policies of the Platform Store through which you downloaded the App. You acknowledge that these Terms are between you and OakDev &amp; AI AB only, and not with Apple Inc. or Google LLC. Apple and Google are not responsible for the App or its content.</p>
+
+        <h4>Third-Party SDKs &amp; Service Providers</h4>
+        <p>The App may incorporate third-party software development kits and services to provide core functionality. These may include analytics, crash reporting, or cloud services. Each such provider operates under its own terms and privacy policy, and OakDev &amp; AI AB is not responsible for their actions. Our use of third-party service providers is governed by and described in our <a href="/privacy">Privacy Policy</a>.</p>
+
+        <div class="info-box">
+          <p><strong>No advertisements:</strong> OakDev &amp; AI AB does not integrate any third-party advertising networks or display any third-party advertising within the App. No user data is shared with advertising platforms.</p>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="policy-section" id="s12">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">12</span>
+          Content, Accuracy &amp; Spiritual Guidance
+        </h2>
+        <p>Vespera provides spiritual reflections, prayers, and Catholic devotional content intended to support personal faith journeys. While we strive to ensure that all Content is consistent with authentic Catholic teaching and tradition, the following limitations apply:</p>
+
+        <h4>Not a Substitute for Pastoral Care</h4>
+        <p>The Content provided through the App is intended for personal spiritual enrichment and is not a substitute for formal religious instruction, the Sacrament of Penance, spiritual direction from an ordained minister, or professional pastoral counselling. Any spiritual guidance provided through the App is general in nature and may not be appropriate for every individual's circumstances.</p>
+
+        <h4>AI-Assisted Content</h4>
+        <p>Some Content in the App may be generated or personalised with the assistance of artificial intelligence technologies. While we review and curate AI-assisted Content for theological accuracy and consistency, we cannot guarantee that all such Content perfectly reflects magisterial Catholic teaching in every respect. We encourage users to verify any teaching that appears significant or unusual against authoritative Catholic sources.</p>
+
+        <h4>Content Accuracy</h4>
+        <p>We make reasonable efforts to ensure the accuracy of Scripture references, feast days, saints' biographies, and liturgical information provided within the App. However, liturgical calendars may vary by rite and region, and we do not guarantee that all content perfectly reflects your specific diocese, rite, or regional Catholic tradition. The Roman Calendar is used as the default reference.</p>
+
+        <h4>Content Changes</h4>
+        <p>We reserve the right to modify, update, or remove Content from the App at any time without prior notice. The availability of specific categories or content items is not guaranteed. Changes to Content do not entitle you to a refund of Reflections already consumed to access that Content.</p>
+      </section>
+
+      <!-- 13 -->
+      <section class="policy-section" id="s13">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">13</span>
+          Privacy &amp; Personal Data
+        </h2>
+        <p>Your use of the App involves the processing of personal data. Our collection, use, and protection of your personal data is governed by our <a href="/privacy">Privacy Policy</a>, which is incorporated into these Terms by reference and forms an integral part of this agreement.</p>
+        <p>By accepting these Terms, you also acknowledge and accept our Privacy Policy. We strongly encourage you to read the Privacy Policy in full, particularly the sections relating to special category data (your religious information as a Catholic app user) and your rights under the GDPR.</p>
+        <p>Key points from our Privacy Policy include:</p>
+        <ul>
+          <li>We process your data as data controller under applicable EU and Swedish law.</li>
+          <li>We do not sell your personal data to any third party, ever.</li>
+          <li>We process religious preference data (special category data under GDPR Art. 9) solely to provide the Services, with your explicit consent.</li>
+          <li>You have extensive rights over your data, including the right of access, rectification, erasure, and portability.</li>
+          <li>Our data protection supervisory authority is the Swedish Authority for Privacy Protection (IMY).</li>
+        </ul>
+      </section>
+
+      <!-- 14 -->
+      <section class="policy-section" id="s14">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">14</span>
+          Disclaimer of Warranties
+        </h2>
+        <p>To the maximum extent permitted by applicable law, the App and all Services are provided <strong>"as is"</strong> and <strong>"as available"</strong>, without warranty of any kind, express or implied.</p>
+        <p>OakDev &amp; AI AB expressly disclaims all warranties, including without limitation:</p>
+        <ul>
+          <li>Any implied warranty of merchantability, fitness for a particular purpose, or non-infringement.</li>
+          <li>Any warranty that the App will be uninterrupted, timely, secure, error-free, or free from viruses or other harmful components.</li>
+          <li>Any warranty as to the accuracy, completeness, reliability, or appropriateness of the Content for your specific spiritual needs.</li>
+          <li>Any warranty that defects in the App will be corrected.</li>
+          <li>Any warranty that the App will be available in any particular jurisdiction or on any particular device configuration.</li>
+        </ul>
+        <div class="info-box">
+          <p><strong>Consumer rights are preserved:</strong> Nothing in this Section affects any non-excludable statutory warranties or consumer guarantees that apply under mandatory law in your jurisdiction, including any implied conditions or warranties under the Swedish Consumer Purchase Act (<em>konsumentköplagen</em>) or the EU Consumer Rights Directive.</p>
+        </div>
+      </section>
+
+      <!-- 15 -->
+      <section class="policy-section" id="s15">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">15</span>
+          Limitation of Liability
+        </h2>
+        <p>To the maximum extent permitted by applicable law, in no event shall OakDev &amp; AI AB, its officers, directors, employees, agents, or licensors be liable to you for:</p>
+        <ul>
+          <li>Any indirect, incidental, special, consequential, exemplary, or punitive damages.</li>
+          <li>Loss of profits, revenue, goodwill, data, or other intangible losses.</li>
+          <li>Damages resulting from any interruption, suspension, or termination of the Services.</li>
+          <li>Damages resulting from any errors or omissions in the Content.</li>
+          <li>Damages resulting from your reliance on any spiritual guidance or devotional content provided by the App.</li>
+          <li>Damages resulting from unauthorised access to or alteration of your Account.</li>
+        </ul>
+        <p>Regardless of the foregoing, to the extent OakDev &amp; AI AB is found liable to you in connection with the App or these Terms, our total aggregate liability to you shall in no event exceed the greater of: (a) the total amount you paid to us (through the Platform Store) in the twelve (12) months immediately preceding the event giving rise to the claim; or (b) €50 EUR.</p>
+        <div class="warning-box">
+          <p><strong>Mandatory law protects consumers:</strong> Nothing in this Section excludes or limits OakDev &amp; AI AB's liability for fraud, fraudulent misrepresentation, death or personal injury caused by our negligence, or any other liability that cannot be excluded or limited under applicable mandatory law, including Swedish and EU consumer protection legislation.</p>
+        </div>
+      </section>
+
+      <!-- 16 -->
+      <section class="policy-section" id="s16">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">16</span>
+          Indemnification
+        </h2>
+        <p>To the extent permitted by applicable law, you agree to defend, indemnify, and hold harmless OakDev &amp; AI AB and its officers, directors, employees, agents, and licensors from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising out of or relating to:</p>
+        <ul>
+          <li>Your use of the App in violation of these Terms.</li>
+          <li>Your violation of any applicable law or regulation.</li>
+          <li>Your infringement of any third party's intellectual property, privacy, or other rights.</li>
+          <li>Any content you submit, post, or transmit through the App.</li>
+          <li>Any dispute between you and any third party in connection with your use of the App.</li>
+        </ul>
+        <p>This indemnification obligation will survive the termination or expiry of these Terms. If you are a consumer in the EU, this clause applies only to the extent permitted under mandatory consumer protection law.</p>
+      </section>
+
+      <!-- 17 -->
+      <section class="policy-section" id="s17">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">17</span>
+          Term &amp; Termination
+        </h2>
+        <p>These Terms are effective from the date you first access or use the App and will remain in full force and effect until terminated.</p>
+
+        <h4>Termination by You</h4>
+        <p>You may terminate these Terms at any time by ceasing use of the App and deleting it from all your devices. Cancelling your Blessed subscription separately (via the Platform Store) does not delete your Account or terminate these Terms.</p>
+
+        <h4>Termination by OakDev &amp; AI AB</h4>
+        <p>We reserve the right to suspend or terminate your access to the App and/or your Account, with or without notice, in the following circumstances:</p>
+        <ul>
+          <li>You have materially breached any provision of these Terms.</li>
+          <li>We are required to do so by applicable law or court order.</li>
+          <li>Continued provision of the Services to you would expose us or others to legal liability.</li>
+          <li>We reasonably suspect fraudulent activity associated with your Account.</li>
+          <li>We discontinue the App or Services in whole or in part.</li>
+        </ul>
+
+        <h4>Effect of Termination</h4>
+        <p>Upon termination, your licence to use the App ceases immediately. The following provisions will survive termination of these Terms: Sections 9 (Intellectual Property), 14 (Disclaimer of Warranties), 15 (Limitation of Liability), 16 (Indemnification), 19 (Governing Law), 20 (Dispute Resolution), and 21 (Severability &amp; Waiver).</p>
+        <p>Termination does not affect any accrued rights or liabilities of either party, nor does it affect any provision of these Terms which is expressly or by implication intended to come into or continue in force on or after termination.</p>
+      </section>
+
+      <!-- 18 -->
+      <section class="policy-section" id="s18">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">18</span>
+          Changes to These Terms
+        </h2>
+        <p>OakDev &amp; AI AB reserves the right to modify these Terms at any time. We will notify you of material changes by:</p>
+        <ul>
+          <li>Posting the updated Terms within the App with a revised "Last updated" date;</li>
+          <li>Displaying a prominent in-app notice at your next login; and/or</li>
+          <li>Sending an email notification to the address associated with your Account, if applicable.</li>
+        </ul>
+        <p>The updated Terms will become effective <strong>thirty (30) days after notice is given</strong> (or, for non-material changes, immediately upon posting). Your continued use of the App after the effective date of any changes constitutes your acceptance of the updated Terms.</p>
+        <p>If you do not agree to the updated Terms, you must cease using the App before the effective date of the changes. If you have an active Blessed subscription, you may request cancellation and a pro-rata refund for the remaining unused period of a subscription you paid for before the effective date, by contacting us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>.</p>
+        <p>Where changes are required by law or relate to a new feature, we may provide shorter notice where necessary. We will never make changes that retrospectively impose greater obligations on you without adequate notice and an opportunity to object or terminate.</p>
+      </section>
+
+      <!-- 19 -->
+      <section class="policy-section" id="s19">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">19</span>
+          Governing Law &amp; Jurisdiction
+        </h2>
+        <p>These Terms of Service shall be governed by and construed in accordance with the laws of <strong>Sweden</strong>, without regard to its conflict of law provisions. The United Nations Convention on Contracts for the International Sale of Goods (CISG) does not apply to these Terms.</p>
+        <p>Subject to Section 20 (Dispute Resolution), you agree that any legal action or proceeding arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the Swedish courts. If you are a consumer resident in the European Union, you retain the benefit of any mandatory provisions of the law of the country in which you reside that cannot be derogated from by agreement, including any mandatory jurisdiction provisions.</p>
+        <p>EU consumers may also bring proceedings in the courts of their country of residence.</p>
+      </section>
+
+      <!-- 20 -->
+      <section class="policy-section" id="s20">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">20</span>
+          Dispute Resolution
+        </h2>
+
+        <h4>Informal Resolution</h4>
+        <p>We believe most disputes can be resolved through direct communication. Before initiating any formal proceedings, you agree to contact us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> and provide a written description of the dispute, your name, Account details, and the resolution you are seeking. We will endeavour to respond within fifteen (15) business days. Both parties will attempt in good faith to resolve the dispute informally within thirty (30) days of the initial notice.</p>
+
+        <h4>EU Online Dispute Resolution</h4>
+        <p>If you are a consumer in the European Union and we cannot resolve a dispute informally, you have the right to use the EU Online Dispute Resolution (ODR) platform, which is available at <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>. Our email address for this purpose is <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>.</p>
+
+        <h4>Swedish Alternative Dispute Resolution</h4>
+        <p>If you are a consumer based in Sweden, you also have the right to lodge a complaint with the Swedish National Board for Consumer Disputes (<em>Allmänna reklamationsnämnden</em>, <strong>ARN</strong>) at <a href="https://www.arn.se" target="_blank" rel="noopener noreferrer">www.arn.se</a>. ARN is a public body that provides free-of-charge and independent dispute resolution for consumer disputes with traders in Sweden.</p>
+
+        <h4>Litigation</h4>
+        <p>If informal resolution and alternative dispute resolution fail, you and OakDev &amp; AI AB agree that any dispute will be resolved by the courts of Sweden, as set out in Section 19, subject to your rights as an EU consumer.</p>
+      </section>
+
+      <!-- 21 -->
+      <section class="policy-section" id="s21">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">21</span>
+          Severability, Waiver &amp; Entire Agreement
+        </h2>
+
+        <h4>Severability</h4>
+        <p>If any provision of these Terms is found to be unlawful, void, or for any reason unenforceable by a court of competent jurisdiction, that provision shall be deemed modified to the minimum extent necessary to make it enforceable, or if modification is not possible, deemed severed from these Terms without affecting the enforceability of the remaining provisions. The remaining Terms shall continue in full force and effect.</p>
+
+        <h4>Waiver</h4>
+        <p>No failure or delay by OakDev &amp; AI AB in exercising any right or remedy under these Terms shall constitute a waiver of that right or remedy, nor shall any single or partial exercise of any right or remedy preclude any other or further exercise of that right or remedy or the exercise of any other right or remedy. A waiver of any breach of these Terms shall not operate as a waiver of any subsequent breach.</p>
+
+        <h4>Entire Agreement</h4>
+        <p>These Terms, together with the <a href="/privacy">Privacy Policy</a> and any other legal notices published by us within the App, constitute the entire and exclusive agreement between you and OakDev &amp; AI AB with respect to the subject matter hereof, and supersede all prior or contemporaneous agreements, understandings, representations, warranties, and communications between you and us, whether written or oral, relating to such subject matter.</p>
+
+        <h4>Assignment</h4>
+        <p>You may not assign or transfer these Terms, or any of your rights or obligations hereunder, without our prior written consent. OakDev &amp; AI AB may freely assign or transfer these Terms, in whole or in part, including in connection with a merger, acquisition, reorganisation, or sale of all or substantially all of our assets, upon reasonable notice to you. These Terms shall inure to the benefit of and be binding upon the successors and permitted assigns of each party.</p>
+
+        <h4>Force Majeure</h4>
+        <p>OakDev &amp; AI AB shall not be liable for any failure or delay in performing any obligation under these Terms where such failure or delay is caused by circumstances beyond our reasonable control, including but not limited to acts of God, war, civil unrest, government action, epidemic or pandemic, power failure, internet outages, or failure of third-party service providers. We will notify you of such events and make reasonable efforts to resume performance as soon as practicable.</p>
+      </section>
+
+      <!-- 22 -->
+      <section class="policy-section" id="s22">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">22</span>
+          Contact Us
+        </h2>
+        <p>If you have any questions, concerns, or feedback regarding these Terms of Service, or if you wish to exercise any rights described herein, please contact us:</p>
+        <div class="contact-card">
+          <div class="contact-card__name">OakDev &amp; AI AB — Legal &amp; Compliance</div>
+          <div class="contact-card__row"><span>Country</span><span>Sweden (European Union)</span></div>
+          <div class="contact-card__row"><span>VAT No.</span><span>SE559431678701</span></div>
+          <div class="contact-card__row"><span>Email</span><span><a href="mailto:hello@oakdev.app">hello@oakdev.app</a></span></div>
+          <div class="contact-card__row"><span>Website</span><span><a href="https://vespera.oakdev.app">https://vespera.oakdev.app</a></span></div>
+          <div class="contact-card__row"><span>Response time</span><span>Within 15 business days (we aim for sooner)</span></div>
+        </div>
+        <p>We take all enquiries seriously and will make every effort to resolve your concern promptly and fairly. For privacy-specific requests (access, erasure, portability, etc.), please refer to our <a href="/privacy">Privacy Policy</a> for the appropriate contact and process.</p>
+        <div class="info-box">
+          <p><strong>Swedish consumer rights body:</strong> Konsumentverket (The Swedish Consumer Agency) provides guidance on your rights as a consumer at <a href="https://www.konsumentverket.se" target="_blank" rel="noopener noreferrer">www.konsumentverket.se</a> (in Swedish) and <a href="https://www.hallakonsument.se" target="_blank" rel="noopener noreferrer">www.hallakonsument.se</a> (HallaKonsument, available in multiple languages).</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="page-footer__inner">
+      <div class="page-footer__links">
+        <a href="/"               class="page-footer__link">Home</a>
+        <a href="/privacy"        class="page-footer__link">Privacy Policy</a>
+        <a href="/terms"          class="page-footer__link">Terms of Service</a>
+        <a href="/support"        class="page-footer__link">Support</a>
+        <a href="/delete-account" class="page-footer__link">Delete Account</a>
+      </div>
+      <p class="page-footer__copy">&copy; 2026 OakDev &amp; AI AB. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- TOC active link highlight -->
+  <script>
+    (function () {
+      const links   = document.querySelectorAll('.toc__link');
+      const sections = document.querySelectorAll('.policy-section');
+
+      if (!links.length || !sections.length) return;
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              links.forEach(l => l.classList.remove('is-active'));
+              const active = document.querySelector(`.toc__link[href="#${entry.target.id}"]`);
+              if (active) active.classList.add('is-active');
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+      );
+
+      sections.forEach(s => observer.observe(s));
+    })();
+  </script>
+
+</body>
+</html>

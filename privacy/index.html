@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vespera Privacy Policy — How OakDev & AI AB collects, uses, and protects your personal data.">
+  <meta name="robots" content="index, follow">
+  <title>Privacy Policy — Vespera</title>
+
+  <link rel="icon" type="image/png" href="../assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+
+  <style>
+    /* ── Base ── */
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--cream);
+      background-color: var(--abyss);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--gold); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--gold-light); text-decoration: underline; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    ul, ol { list-style: none; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--abyss); }
+    ::-webkit-scrollbar-thumb { background: var(--crimson-700); border-radius: 99px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: rgba(13, 2, 5, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .nav__inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav__back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--cream-mid);
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .nav__back:hover { color: var(--gold); text-decoration: none; }
+    .nav__back svg { flex-shrink: 0; }
+    .nav__logo { height: 30px; width: auto; filter: drop-shadow(0 0 6px rgba(201,162,39,0.2)); }
+    .nav__divider { width: 1px; height: 20px; background: var(--glass-border); }
+    .nav__title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 5rem clamp(1.5rem, 5vw, 4rem) 3rem;
+      text-align: center;
+      position: relative;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,0,0,0.20) 0%, transparent 65%),
+        var(--abyss);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 55%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+    }
+    .page-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .page-meta {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      color: var(--cream-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Layout ── */
+    .page-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem clamp(1.5rem, 5vw, 4rem) 6rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── TOC sidebar ── */
+    .toc {
+      position: sticky;
+      top: 80px;
+      background: rgba(13, 2, 5, 0.65);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .toc__title {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .toc__list { display: flex; flex-direction: column; gap: 0.1rem; }
+    .toc__link {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--cream-muted);
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+    .toc__link:hover { background: var(--gold-subtle); color: var(--gold-light); text-decoration: none; }
+    .toc__link.is-active { color: var(--gold); background: var(--gold-subtle); }
+
+    /* ── Policy content ── */
+    .policy { display: flex; flex-direction: column; gap: 3rem; }
+
+    .policy-section { scroll-margin-top: 90px; }
+
+    .policy-section__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .policy-section__num {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold-muted);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 99px;
+      padding: 0.2rem 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .policy p {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--cream-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .policy p:last-child { margin-bottom: 0; }
+
+    .policy h4 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .policy ul {
+      margin: 0.75rem 0 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .policy ul li {
+      font-size: var(--text-base);
+      color: var(--cream-mid);
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .policy ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold-muted);
+      font-size: 0.5rem;
+      top: 0.5rem;
+    }
+
+    .policy strong { color: var(--cream); font-weight: 600; }
+    .policy em { color: var(--gold-muted); font-style: italic; }
+
+    /* Info box */
+    .info-box {
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .info-box p { color: var(--cream-mid); margin-bottom: 0; }
+    .info-box strong { color: var(--gold-light); }
+
+    /* Warning box */
+    .warning-box {
+      background: rgba(139,0,0,0.12);
+      border: 1px solid var(--crimson-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .warning-box p { color: var(--cream-mid); margin-bottom: 0; }
+
+    /* Table */
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+    }
+    .policy-table th {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      background: var(--gold-subtle);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .policy-table td {
+      color: var(--cream-mid);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1rem;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .policy-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    /* Contact card */
+    .contact-card {
+      background: rgba(13,2,5,0.7);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .contact-card__name {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .contact-card__row {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--cream-dim);
+      margin-bottom: 0.4rem;
+      align-items: flex-start;
+    }
+    .contact-card__row span:first-child {
+      color: var(--gold-muted);
+      font-weight: 500;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--void);
+      border-top: 1px solid var(--glass-border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+    .page-footer__inner { max-width: 1280px; margin: 0 auto; }
+    .page-footer__links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .page-footer__link { font-size: 0.8125rem; color: var(--cream-muted); transition: color 0.2s; }
+    .page-footer__link:hover { color: var(--gold-muted); text-decoration: none; }
+    .page-footer__copy { font-size: 0.75rem; color: var(--cream-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .page-body { grid-template-columns: 1fr; gap: 2rem; }
+      .toc { position: static; display: none; }
+    }
+    @media (max-width: 480px) {
+      .page-header { padding: 3rem 1.5rem 2rem; }
+      .policy-table { font-size: 0.8rem; }
+      .policy-table th, .policy-table td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__back" aria-label="Back to Vespera">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back
+      </a>
+      <div class="nav__divider"></div>
+      <a href="/">
+        <img src="../assets/logo.png" alt="Vespera" class="nav__logo">
+      </a>
+      <div class="nav__divider"></div>
+      <span class="nav__title">Privacy Policy</span>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <p class="page-eyebrow">Legal Documentation</p>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Effective date: 1 March 2026 &nbsp;·&nbsp; Last updated: 1 March 2026 &nbsp;·&nbsp; Version 1.0</p>
+  </header>
+
+  <!-- Body -->
+  <div class="page-body">
+
+    <!-- Table of Contents -->
+    <aside class="toc" aria-label="Table of contents">
+      <div class="toc__title">Contents</div>
+      <nav class="toc__list">
+        <a href="#s1"  class="toc__link">1. Controller &amp; Contact</a>
+        <a href="#s2"  class="toc__link">2. Scope &amp; Definitions</a>
+        <a href="#s3"  class="toc__link">3. Data We Collect</a>
+        <a href="#s4"  class="toc__link">4. Special Category Data</a>
+        <a href="#s5"  class="toc__link">5. Legal Basis</a>
+        <a href="#s6"  class="toc__link">6. How We Use Your Data</a>
+        <a href="#s7"  class="toc__link">7. Reflections &amp; Purchases</a>
+        <a href="#s8"  class="toc__link">8. Data Sharing</a>
+        <a href="#s9"  class="toc__link">9. Third-Party Services</a>
+        <a href="#s10" class="toc__link">10. International Transfers</a>
+        <a href="#s11" class="toc__link">11. Data Retention</a>
+        <a href="#s12" class="toc__link">12. Your GDPR Rights</a>
+        <a href="#s13" class="toc__link">13. California (CCPA)</a>
+        <a href="#s14" class="toc__link">14. Children's Privacy</a>
+        <a href="#s15" class="toc__link">15. Security</a>
+        <a href="#s16" class="toc__link">16. Cookies &amp; Tracking</a>
+        <a href="#s17" class="toc__link">17. Data Breaches</a>
+        <a href="#s18" class="toc__link">18. Changes to This Policy</a>
+        <a href="#s19" class="toc__link">19. Supervisory Authority</a>
+        <a href="#s20" class="toc__link">20. Contact Us</a>
+      </nav>
+    </aside>
+
+    <!-- Policy Content -->
+    <main class="policy" id="policy">
+
+      <div class="info-box">
+        <p><strong>Summary:</strong> Vespera is a Catholic spiritual app published by OakDev &amp; AI AB, a company registered in Sweden. We take your privacy very seriously and comply fully with the EU General Data Protection Regulation (GDPR), the Swedish Data Protection Act (2018:218), and applicable international privacy laws. This policy explains in full detail what personal data we collect, why, how it is used, how long it is kept, and what rights you have. Please read it carefully.</p>
+      </div>
+
+      <!-- 1 -->
+      <section class="policy-section" id="s1">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">01</span>
+          Data Controller &amp; Contact Information
+        </h2>
+        <p>The data controller responsible for the processing of your personal data in connection with the Vespera application and website is:</p>
+        <div class="contact-card">
+          <div class="contact-card__name">OakDev &amp; AI AB</div>
+          <div class="contact-card__row"><span>Country</span><span>Sweden (European Union)</span></div>
+          <div class="contact-card__row"><span>VAT No.</span><span>SE559431678701</span></div>
+          <div class="contact-card__row"><span>Email</span><span><a href="mailto:hello@oakdev.app">hello@oakdev.app</a></span></div>
+          <div class="contact-card__row"><span>Website</span><span><a href="https://vespera.oakdev.app">https://vespera.oakdev.app</a></span></div>
+          <div class="contact-card__row"><span>App name</span><span>Vespera</span></div>
+        </div>
+        <p>As data controller, OakDev &amp; AI AB determines the purposes and means of processing your personal data. All questions, requests, and complaints relating to the processing of your personal data should be directed to the contact above. We will respond to all verified requests within the timeframes required by applicable law, and in any event within thirty (30) calendar days.</p>
+      </section>
+
+      <!-- 2 -->
+      <section class="policy-section" id="s2">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">02</span>
+          Scope of This Policy &amp; Definitions
+        </h2>
+        <p>This Privacy Policy applies to:</p>
+        <ul>
+          <li>The Vespera mobile application for iOS and Android (the <strong>"App"</strong>);</li>
+          <li>The Vespera website located at <a href="https://vespera.oakdev.app">https://vespera.oakdev.app</a> (the <strong>"Website"</strong>);</li>
+          <li>Any related services, features, content, or applications offered by OakDev &amp; AI AB in connection with Vespera (collectively, the <strong>"Services"</strong>).</li>
+        </ul>
+        <p>This Policy does not apply to third-party websites or services that may be linked to from the Services. We encourage you to read the privacy policies of any third-party services you access.</p>
+
+        <h4>Definitions</h4>
+        <ul>
+          <li><strong>"Personal Data"</strong> means any information relating to an identified or identifiable natural person (the "data subject") as defined under GDPR Article 4(1).</li>
+          <li><strong>"Processing"</strong> means any operation performed on personal data, including collection, storage, use, disclosure, and erasure.</li>
+          <li><strong>"Reflections"</strong> means the in-app currency unit used within the Vespera App, representing the number of spiritual category visits a user may make.</li>
+          <li><strong>"Blessed"</strong> means the paid subscription tier available within the Vespera App, providing enhanced access to reflections and content.</li>
+          <li><strong>"GDPR"</strong> means the General Data Protection Regulation (EU) 2016/679.</li>
+          <li><strong>"EEA"</strong> means the European Economic Area.</li>
+          <li><strong>"We," "Us," "Our"</strong> refers to OakDev &amp; AI AB.</li>
+          <li><strong>"You," "Your"</strong> refers to any individual using our Services.</li>
+        </ul>
+      </section>
+
+      <!-- 3 -->
+      <section class="policy-section" id="s3">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">03</span>
+          Personal Data We Collect
+        </h2>
+        <p>We collect personal data in several ways: directly from you when you use the App or Website, automatically through your device, and from third-party platforms through which you access or purchase the App.</p>
+
+        <h4>3.1 Data You Provide Directly</h4>
+        <ul>
+          <li><strong>Account registration data:</strong> If you create an account, we collect your email address and any display name or username you choose to provide. Passwords, if applicable, are stored in hashed form and never in plain text.</li>
+          <li><strong>Support communications:</strong> When you contact us at hello@oakdev.app, we process the content of your messages, your email address, and any information you voluntarily include.</li>
+          <li><strong>Feedback and survey responses:</strong> If you choose to participate in user research or submit feedback, we process the content of those communications.</li>
+        </ul>
+
+        <h4>3.2 Data We Collect Automatically</h4>
+        <ul>
+          <li><strong>Device identifiers:</strong> Device model, operating system version, unique device identifiers (such as IDFA on iOS or Android Advertising ID), and App instance identifiers.</li>
+          <li><strong>Usage data:</strong> Which categories within the App you visit, frequency and timing of App sessions, screens viewed, features used, and the number of reflections consumed and remaining.</li>
+          <li><strong>Technical data:</strong> IP address, network type (Wi-Fi or cellular), time zone, language settings, App version, and crash reports.</li>
+          <li><strong>Log data:</strong> Server-side logs including request timestamps, referral URLs, and error logs for debugging and security purposes.</li>
+          <li><strong>Performance data:</strong> App load times, crash diagnostics, and ANR (Application Not Responding) data to improve App stability.</li>
+        </ul>
+
+        <h4>3.3 Data From Third-Party Platforms</h4>
+        <ul>
+          <li><strong>App Store (Apple):</strong> When you download or purchase the App through the Apple App Store, Apple processes the transaction. We may receive aggregate or anonymized purchase confirmation data from Apple, but we do not receive your Apple ID, payment card details, or billing address.</li>
+          <li><strong>Google Play Store:</strong> When you download or purchase the App through Google Play, Google processes the transaction. We may receive aggregate or anonymized purchase confirmation data from Google, but we do not receive your Google Account details, payment card details, or billing address.</li>
+          <li><strong>In-App Purchase APIs:</strong> We receive purchase receipt validation confirmations (not payment details) to confirm and activate Blessed tier status.</li>
+        </ul>
+      </section>
+
+      <!-- 4 -->
+      <section class="policy-section" id="s4">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">04</span>
+          Special Category Data (Sensitive Personal Data)
+        </h2>
+        <div class="warning-box">
+          <p><strong>Important:</strong> Under GDPR Article 9, data revealing religious beliefs constitutes a "special category" of personal data and attracts heightened protection. By using Vespera — an application explicitly providing Catholic spiritual content — your use of the App may infer or reveal information about your religious beliefs or practices. We take this responsibility with the utmost seriousness.</p>
+        </div>
+        <p>Specifically, the following aspects of your App usage may fall within or be inferred to relate to religious belief data:</p>
+        <ul>
+          <li>The categories of spiritual content you access (e.g., Morning Prayer, Rosary Reflections, Eucharistic Devotion);</li>
+          <li>The frequency and pattern of your spiritual engagement within the App;</li>
+          <li>Your use of the Vespera App itself as an indicator of Catholic religious practice.</li>
+        </ul>
+        <p>We process such data only on the basis of <strong>your explicit consent</strong> (GDPR Article 9(2)(a)), which you provide by voluntarily downloading and using the App after reading this Privacy Policy. You may withdraw this consent at any time by deleting your account and ceasing use of the App (see Section 12 — Your GDPR Rights).</p>
+        <p>We do not sell, rent, share, or otherwise disclose any data that reveals or could infer your religious beliefs to any third parties for advertising, profiling, or commercial targeting purposes. Such data is used solely to deliver and improve the spiritual content features of the App.</p>
+        <p>We do not require you to identify yourself as Catholic or confirm any religious affiliation to use the App. The App is available to anyone who finds value in its content.</p>
+      </section>
+
+      <!-- 5 -->
+      <section class="policy-section" id="s5">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">05</span>
+          Legal Basis for Processing
+        </h2>
+        <p>We only process your personal data where we have a valid legal basis under GDPR Article 6 (and Article 9 for special category data, where applicable). The following table sets out our legal bases for each category of processing:</p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Processing Activity</th>
+              <th>Legal Basis</th>
+              <th>GDPR Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Providing the App and its features</td>
+              <td>Performance of a contract (Terms of Service)</td>
+              <td>Art. 6(1)(b)</td>
+            </tr>
+            <tr>
+              <td>Account creation and management</td>
+              <td>Performance of a contract</td>
+              <td>Art. 6(1)(b)</td>
+            </tr>
+            <tr>
+              <td>Processing in-app purchases (Blessed tier)</td>
+              <td>Performance of a contract</td>
+              <td>Art. 6(1)(b)</td>
+            </tr>
+            <tr>
+              <td>Managing your reflection balance</td>
+              <td>Performance of a contract</td>
+              <td>Art. 6(1)(b)</td>
+            </tr>
+            <tr>
+              <td>Responding to customer support requests</td>
+              <td>Legitimate interests (customer service)</td>
+              <td>Art. 6(1)(f)</td>
+            </tr>
+            <tr>
+              <td>App analytics and usage statistics</td>
+              <td>Legitimate interests (improving our Services)</td>
+              <td>Art. 6(1)(f)</td>
+            </tr>
+            <tr>
+              <td>Security monitoring and fraud prevention</td>
+              <td>Legitimate interests (protecting our Services)</td>
+              <td>Art. 6(1)(f)</td>
+            </tr>
+            <tr>
+              <td>Compliance with legal obligations</td>
+              <td>Legal obligation</td>
+              <td>Art. 6(1)(c)</td>
+            </tr>
+            <tr>
+              <td>Processing religious belief data (App usage patterns)</td>
+              <td>Explicit consent</td>
+              <td>Art. 9(2)(a)</td>
+            </tr>
+            <tr>
+              <td>Marketing communications (if applicable, opt-in only)</td>
+              <td>Consent</td>
+              <td>Art. 6(1)(a)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Where we rely on <strong>legitimate interests</strong> as a legal basis, we have conducted a balancing test to confirm that our interests are not overridden by your fundamental rights and freedoms. You may request further information about these balancing tests by contacting us.</p>
+        <p>Where we rely on <strong>consent</strong>, you have the right to withdraw that consent at any time. Withdrawal of consent will not affect the lawfulness of processing carried out before withdrawal.</p>
+      </section>
+
+      <!-- 6 -->
+      <section class="policy-section" id="s6">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">06</span>
+          How We Use Your Personal Data
+        </h2>
+        <p>We use your personal data for the following purposes:</p>
+
+        <h4>Service Delivery</h4>
+        <ul>
+          <li>To create, maintain, and manage your account;</li>
+          <li>To deliver the spiritual content categories you access;</li>
+          <li>To track, deduct, and replenish your reflection balance;</li>
+          <li>To activate and maintain your Blessed tier subscription status;</li>
+          <li>To send you transactional notifications (e.g., purchase confirmations, low reflection balance alerts, where you have opted in to notifications).</li>
+        </ul>
+
+        <h4>Security and Integrity</h4>
+        <ul>
+          <li>To detect, investigate, and prevent fraudulent transactions, abuse, and other illegal activity;</li>
+          <li>To verify the validity of in-app purchase receipts;</li>
+          <li>To monitor for unauthorized access to our systems;</li>
+          <li>To enforce our Terms of Service.</li>
+        </ul>
+
+        <h4>App Improvement and Analytics</h4>
+        <ul>
+          <li>To understand how users interact with the App in order to improve features, content, and performance;</li>
+          <li>To diagnose technical problems, crashes, and errors;</li>
+          <li>To measure aggregate usage patterns (we use anonymized or aggregated data wherever possible for analytics).</li>
+        </ul>
+
+        <h4>Legal and Regulatory Compliance</h4>
+        <ul>
+          <li>To comply with applicable Swedish and EU law, including VAT and accounting obligations (Swedish Bookkeeping Act, Bokföringslagen);</li>
+          <li>To respond to lawful requests from public authorities, courts, or law enforcement agencies;</li>
+          <li>To establish, exercise, or defend legal claims.</li>
+        </ul>
+
+        <h4>Customer Support</h4>
+        <ul>
+          <li>To respond to your inquiries and resolve technical issues;</li>
+          <li>To process account deletion requests submitted through our designated channels.</li>
+        </ul>
+
+        <p>We will never use your personal data to display advertisements within the App. <strong>Vespera contains no advertising whatsoever.</strong></p>
+        <p>We will never use your personal data for automated individual decision-making that produces significant effects on you, without appropriate safeguards as required by GDPR Article 22.</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="policy-section" id="s7">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">07</span>
+          Reflections System &amp; In-App Purchases
+        </h2>
+        <p>"Reflections" are the in-app unit within Vespera that represent a user's available spiritual category visits. One (1) reflection is consumed each time you access a content category. This is a core functional feature of the App, not a monetary transaction on our platform — reflections are not a crypto-asset, token, or financial instrument of any kind.</p>
+        <p>Your reflection balance is personal data in the sense that it is associated with your account and reflects your usage of the App. We process this data on the basis of contract performance (to deliver the agreed service).</p>
+
+        <h4>Blessed Tier (Paid Subscription)</h4>
+        <p>The Blessed subscription tier is offered through the native in-app purchase mechanism of the Apple App Store or Google Play Store. All payment processing is handled exclusively by Apple or Google. <strong>OakDev &amp; AI AB does not at any time receive, store, or process your payment card details, bank account information, or billing address.</strong></p>
+        <p>We receive from Apple or Google only a purchase receipt token and a confirmation of the purchase status (active, expired, refunded). This information is used solely to activate, maintain, and deactivate your Blessed tier access within the App.</p>
+        <p>For subscription billing disputes, refunds, or billing inquiries, please contact Apple Support or Google Play Support directly, as these transactions are governed by their respective terms and privacy policies.</p>
+      </section>
+
+      <!-- 8 -->
+      <section class="policy-section" id="s8">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">08</span>
+          Disclosure and Sharing of Personal Data
+        </h2>
+        <p>We do not sell, rent, trade, or otherwise commercially disclose your personal data to third parties for their own marketing or commercial purposes. We may share your personal data in the following limited circumstances:</p>
+
+        <h4>8.1 Service Providers (Data Processors)</h4>
+        <p>We engage certain trusted third-party service providers who process personal data on our behalf and under our documented instructions. These are "data processors" under GDPR. All processors are bound by written data processing agreements that comply with GDPR Article 28. Current categories of processors include:</p>
+        <ul>
+          <li><strong>Cloud infrastructure and hosting providers</strong> for storing App data and serving content;</li>
+          <li><strong>Analytics providers</strong> for aggregated, anonymized App usage analysis;</li>
+          <li><strong>Crash reporting services</strong> for diagnosing technical errors;</li>
+          <li><strong>Customer support tools</strong> for managing email correspondence.</li>
+        </ul>
+
+        <h4>8.2 Platform Providers</h4>
+        <p>Apple (App Store) and Google (Google Play) act as independent data controllers when you transact with them. Their processing of your data is governed by their own privacy policies.</p>
+
+        <h4>8.3 Legal Requirements</h4>
+        <p>We may disclose your personal data if required to do so by law, court order, or binding request from a competent governmental or regulatory authority. Where legally permissible, we will notify you of such a request before disclosing your data.</p>
+
+        <h4>8.4 Business Transfers</h4>
+        <p>In the event of a merger, acquisition, sale of assets, or other corporate restructuring, your personal data may be transferred to a successor entity, subject to the same protections as described in this Policy. We will notify you of any such transfer and provide you the opportunity to delete your data if the new entity's privacy practices are materially different from this Policy.</p>
+
+        <h4>8.5 Protection of Rights</h4>
+        <p>We may disclose personal data to enforce our Terms of Service, to protect the rights, safety, and property of OakDev &amp; AI AB, our users, or others, or to detect and prevent fraud or illegal activity.</p>
+
+        <p>In all cases, we share only the minimum amount of personal data necessary for the stated purpose (the principle of data minimisation under GDPR Article 5(1)(c)).</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="policy-section" id="s9">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">09</span>
+          Third-Party Services &amp; Integrations
+        </h2>
+        <p>The App and Website may use or interact with the following categories of third-party services. Each third party operates under its own privacy policy, and we encourage you to review them:</p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Service Category</th>
+              <th>Purpose</th>
+              <th>Data Shared</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Apple App Store</td>
+              <td>App distribution and in-app purchases (iOS)</td>
+              <td>Purchase receipts, device identifiers</td>
+              <td>USA (SCCs apply)</td>
+            </tr>
+            <tr>
+              <td>Google Play Store</td>
+              <td>App distribution and in-app purchases (Android)</td>
+              <td>Purchase receipts, device identifiers</td>
+              <td>USA (SCCs apply)</td>
+            </tr>
+            <tr>
+              <td>Cloud hosting</td>
+              <td>Backend infrastructure</td>
+              <td>Account data, usage logs</td>
+              <td>EU/EEA (preferred)</td>
+            </tr>
+            <tr>
+              <td>Crash analytics</td>
+              <td>App stability diagnostics</td>
+              <td>Device info, stack traces (no PII required)</td>
+              <td>EEA or USA (SCCs)</td>
+            </tr>
+            <tr>
+              <td>Email service</td>
+              <td>Customer support correspondence</td>
+              <td>Email address, message content</td>
+              <td>EEA or USA (SCCs)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>"SCCs" refers to the Standard Contractual Clauses adopted by the European Commission for international data transfers, as described in Section 10.</p>
+        <p>We do not integrate advertising networks, cross-app tracking frameworks, or third-party data brokers of any kind into Vespera.</p>
+      </section>
+
+      <!-- 10 -->
+      <section class="policy-section" id="s10">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">10</span>
+          International Transfers of Personal Data
+        </h2>
+        <p>OakDev &amp; AI AB is incorporated in Sweden and your personal data is primarily processed within the European Economic Area (EEA). However, some of our third-party service providers (such as Apple and Google) are located in, or may transfer data to, countries outside the EEA, including the United States.</p>
+        <p>When we transfer personal data outside the EEA, we ensure that appropriate safeguards are in place, as required by GDPR Chapter V. These safeguards include:</p>
+        <ul>
+          <li><strong>Standard Contractual Clauses (SCCs):</strong> The European Commission-approved contractual clauses for international data transfers (Commission Implementing Decision (EU) 2021/914), incorporated into our data processing agreements with processors located outside the EEA;</li>
+          <li><strong>Adequacy decisions:</strong> Where the European Commission has determined that a third country ensures an adequate level of data protection;</li>
+          <li><strong>Other appropriate safeguards</strong> as recognised under GDPR Article 46.</li>
+        </ul>
+        <p>You may request a copy of the relevant transfer mechanisms by contacting us at hello@oakdev.app.</p>
+      </section>
+
+      <!-- 11 -->
+      <section class="policy-section" id="s11">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">11</span>
+          Data Retention
+        </h2>
+        <p>We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, to comply with our legal obligations, to resolve disputes, and to enforce our agreements. The following retention periods apply:</p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Data Category</th>
+              <th>Retention Period</th>
+              <th>Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Account data (email, username)</td>
+              <td>Duration of account + 30 days after deletion request</td>
+              <td>Contract performance</td>
+            </tr>
+            <tr>
+              <td>Reflection balance and usage history</td>
+              <td>Duration of account + 30 days after deletion</td>
+              <td>Contract performance</td>
+            </tr>
+            <tr>
+              <td>Purchase/subscription records</td>
+              <td>7 years from transaction date</td>
+              <td>Swedish Bookkeeping Act (Bokföringslagen) Ch. 7, § 2</td>
+            </tr>
+            <tr>
+              <td>Customer support communications</td>
+              <td>3 years from resolution</td>
+              <td>Legitimate interests (legal claims)</td>
+            </tr>
+            <tr>
+              <td>Crash and error logs</td>
+              <td>90 days</td>
+              <td>Legitimate interests (stability)</td>
+            </tr>
+            <tr>
+              <td>Aggregated analytics data</td>
+              <td>Indefinitely (anonymized — not personal data)</td>
+              <td>N/A (not personal data)</td>
+            </tr>
+            <tr>
+              <td>Server access logs</td>
+              <td>12 months</td>
+              <td>Legitimate interests (security)</td>
+            </tr>
+            <tr>
+              <td>Data subject rights correspondence</td>
+              <td>5 years</td>
+              <td>Legal obligation (demonstrating compliance)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>At the end of the applicable retention period, personal data is securely deleted or anonymized in a manner that ensures it cannot be reconstructed. Where we are unable to delete data due to legal or regulatory obligations, we will inform you of this when responding to a deletion request.</p>
+      </section>
+
+      <!-- 12 -->
+      <section class="policy-section" id="s12">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">12</span>
+          Your Rights Under GDPR
+        </h2>
+        <p>As a data subject under GDPR, you have the following rights with respect to your personal data. You may exercise any of these rights by contacting us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>. We will respond within one (1) calendar month of receiving your request. This period may be extended by a further two months where necessary, considering the complexity and number of requests, in which case we will notify you within the first month.</p>
+        <p>We will not charge a fee for responding to your rights requests unless they are manifestly unfounded or excessive, in which case we may charge a reasonable administrative fee or refuse to act, in accordance with GDPR Article 12(5).</p>
+        <p>We may require verification of your identity before acting on a rights request to prevent unauthorized disclosure or deletion of another person's data.</p>
+
+        <h4>Right of Access (Art. 15)</h4>
+        <p>You have the right to obtain confirmation of whether we process personal data concerning you, and if so, to receive a copy of that data along with supplementary information about how it is processed.</p>
+
+        <h4>Right to Rectification (Art. 16)</h4>
+        <p>You have the right to request the correction of inaccurate personal data and to have incomplete data completed, including by providing a supplementary statement.</p>
+
+        <h4>Right to Erasure — "Right to be Forgotten" (Art. 17)</h4>
+        <p>You have the right to request the erasure of your personal data where: the data is no longer necessary for the purposes it was collected; you withdraw consent and there is no other legal basis; you object to processing and there are no overriding legitimate grounds; the data has been unlawfully processed; or erasure is required by law. You may also submit a deletion request through our dedicated page at <a href="/delete-account">/delete-account</a>.</p>
+        <p>Please note that we may retain certain data after erasure where required by legal obligation (e.g., financial records required under the Swedish Bookkeeping Act).</p>
+
+        <h4>Right to Restriction of Processing (Art. 18)</h4>
+        <p>You have the right to request that we restrict the processing of your personal data in certain circumstances, including while the accuracy of the data is contested, or while we assess an objection you have raised.</p>
+
+        <h4>Right to Data Portability (Art. 20)</h4>
+        <p>Where processing is based on consent or contract and is carried out by automated means, you have the right to receive your personal data in a structured, commonly used, and machine-readable format (e.g., JSON or CSV), and to transmit that data to another controller.</p>
+
+        <h4>Right to Object (Art. 21)</h4>
+        <p>You have the right to object at any time to processing of your personal data based on our legitimate interests (GDPR Art. 6(1)(f)). We will cease processing unless we can demonstrate compelling legitimate grounds that override your interests, or for the establishment, exercise, or defence of legal claims. You may also object at any time to processing for direct marketing purposes (if applicable).</p>
+
+        <h4>Rights Related to Automated Decision-Making (Art. 22)</h4>
+        <p>You have the right not to be subject to a decision based solely on automated processing, including profiling, that produces legal effects or similarly significantly affects you. We do not currently engage in such automated decision-making with respect to our users.</p>
+
+        <h4>Right to Withdraw Consent (Art. 7(3))</h4>
+        <p>Where processing is based on your consent, you have the right to withdraw that consent at any time. Withdrawal does not affect the lawfulness of processing prior to the withdrawal.</p>
+
+        <div class="info-box">
+          <p><strong>How to exercise your rights:</strong> Email <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> with the subject line "Data Subject Rights Request" and specify which right(s) you wish to exercise. We will acknowledge receipt within 72 hours and fulfil your request within one calendar month.</p>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="policy-section" id="s13">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">13</span>
+          California Privacy Rights (CCPA / CPRA)
+        </h2>
+        <p>If you are a resident of the State of California, United States, you have additional rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA). This section supplements the GDPR rights described above.</p>
+
+        <h4>Categories of Personal Information Collected</h4>
+        <p>In the preceding twelve (12) months, we have collected the following categories of personal information as defined by the CCPA:</p>
+        <ul>
+          <li><strong>Identifiers</strong> (e.g., email address, device ID);</li>
+          <li><strong>Internet or other electronic network activity information</strong> (e.g., App usage data, interaction records);</li>
+          <li><strong>Inferences drawn from personal information</strong> (e.g., user preferences derived from category usage patterns).</li>
+        </ul>
+
+        <h4>Your California Rights</h4>
+        <ul>
+          <li><strong>Right to Know:</strong> You may request disclosure of the categories and specific pieces of personal information we have collected about you, the categories of sources, the business or commercial purposes for collection, and the categories of third parties with whom we share it.</li>
+          <li><strong>Right to Delete:</strong> You may request deletion of personal information we have collected from you, subject to certain exceptions.</li>
+          <li><strong>Right to Correct:</strong> You may request correction of inaccurate personal information.</li>
+          <li><strong>Right to Opt-Out of Sale or Sharing:</strong> We do not sell or share personal information for cross-context behavioral advertising. You do not need to opt-out as this activity does not occur.</li>
+          <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your CCPA rights.</li>
+          <li><strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not use sensitive personal information beyond what is necessary to provide the Services.</li>
+        </ul>
+        <p>To exercise any California right, please contact us at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>. We will respond within 45 days. If necessary, we may extend this by a further 45 days with notice.</p>
+      </section>
+
+      <!-- 14 -->
+      <section class="policy-section" id="s14">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">14</span>
+          Children's Privacy
+        </h2>
+        <p>The Vespera App is not directed at, and we do not knowingly collect personal data from, children under the age of thirteen (13) in the United States or under the age of sixteen (16) in the European Union (as applicable under Member State law, including Sweden where the age is thirteen (13) pursuant to GDPR recital 38 and the Swedish Data Protection Act).</p>
+        <p>If you are a parent or guardian and believe that a child under the applicable minimum age has provided personal data to us without your consent, please contact us immediately at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>. We will take prompt steps to delete such information from our systems.</p>
+        <p>If we become aware that we have collected personal data from a child below the applicable minimum age without verifiable parental consent, we will delete that information without undue delay.</p>
+        <p>Users aged thirteen (13) through seventeen (17) may use the App only with the knowledge and supervision of a parent or guardian. The parent or guardian assumes responsibility for ensuring such use complies with this Policy.</p>
+      </section>
+
+      <!-- 15 -->
+      <section class="policy-section" id="s15">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">15</span>
+          Security Measures
+        </h2>
+        <p>We implement appropriate technical and organisational measures to protect your personal data against accidental or unlawful destruction, loss, alteration, unauthorised disclosure, or access, in accordance with GDPR Article 32 and the principle of security by design and by default.</p>
+
+        <h4>Technical Measures</h4>
+        <ul>
+          <li>All data transmitted between your device and our servers is encrypted using TLS 1.2 or higher;</li>
+          <li>Data at rest is encrypted using industry-standard encryption algorithms;</li>
+          <li>Passwords are never stored in plain text; they are hashed using strong, salted algorithms;</li>
+          <li>Access to production systems and personal data is restricted on a need-to-know basis and protected by multi-factor authentication;</li>
+          <li>Regular security updates and vulnerability patching are applied to all systems;</li>
+          <li>API endpoints are protected against common attack vectors including SQL injection, cross-site scripting (XSS), and brute-force attacks.</li>
+        </ul>
+
+        <h4>Organisational Measures</h4>
+        <ul>
+          <li>Internal data protection policies governing how personal data is handled by our team;</li>
+          <li>Confidentiality obligations for all personnel who have access to personal data;</li>
+          <li>Vendor due diligence for all third-party processors;</li>
+          <li>Periodic review of our security practices and data flows;</li>
+          <li>An incident response procedure for handling data breaches (see Section 17).</li>
+        </ul>
+
+        <p>Notwithstanding the above, no method of transmission over the internet or electronic storage is entirely secure. While we take our security obligations seriously, we cannot guarantee absolute security. If you have reason to believe that your account has been compromised, please contact us immediately at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>.</p>
+      </section>
+
+      <!-- 16 -->
+      <section class="policy-section" id="s16">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">16</span>
+          Cookies &amp; Tracking Technologies
+        </h2>
+
+        <h4>Website</h4>
+        <p>The Vespera website at <a href="https://vespera.oakdev.app">https://vespera.oakdev.app</a> may use strictly necessary cookies and similar technologies required for the Website to function correctly (e.g., session management). We do not currently use analytics cookies, advertising cookies, or third-party tracking cookies on our Website without your prior consent. Where consent is required under Directive 2002/58/EC (the ePrivacy Directive) and applicable Swedish law (Lagen om elektronisk kommunikation), we will obtain it before placing non-essential cookies.</p>
+
+        <h4>Mobile App</h4>
+        <p>The Vespera App does not use web cookies. The App may use:</p>
+        <ul>
+          <li><strong>App instance identifiers</strong> (e.g., Firebase Installation ID) for backend communication and crash reporting;</li>
+          <li><strong>Platform advertising identifiers</strong> (IDFA on iOS, Android Advertising ID on Android) — we access these only where permitted by the platform and only for analytics, never for advertising. On iOS, we comply with Apple's App Tracking Transparency (ATT) framework and only access the IDFA with your explicit permission.</li>
+        </ul>
+        <p>You may opt out of device advertising identifier use at any time via your device settings: <em>iOS: Settings → Privacy &amp; Security → Tracking; Android: Settings → Google → Ads → Opt out of Ads Personalization.</em></p>
+      </section>
+
+      <!-- 17 -->
+      <section class="policy-section" id="s17">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">17</span>
+          Data Breach Notification
+        </h2>
+        <p>In the event of a personal data breach that is likely to result in a risk to the rights and freedoms of natural persons, we will notify the Swedish Data Protection Authority (Integritetsskyddsmyndigheten, IMY) without undue delay and, where feasible, no later than seventy-two (72) hours after becoming aware of the breach, in accordance with GDPR Article 33.</p>
+        <p>Where a breach is likely to result in a <em>high risk</em> to your rights and freedoms, we will also notify you directly without undue delay, in accordance with GDPR Article 34. Such notification will include, at minimum:</p>
+        <ul>
+          <li>A description of the nature of the breach;</li>
+          <li>The name and contact details of our Data Protection contact;</li>
+          <li>The likely consequences of the breach;</li>
+          <li>The measures taken or proposed to address the breach and, where applicable, to mitigate its possible adverse effects.</li>
+        </ul>
+        <p>If you become aware of or suspect a security incident involving our Services, please notify us immediately at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a>.</p>
+      </section>
+
+      <!-- 18 -->
+      <section class="policy-section" id="s18">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">18</span>
+          Changes to This Privacy Policy
+        </h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or for other operational reasons. All updates will be posted on this page with an updated "Last updated" date.</p>
+        <p>For material changes — defined as changes that expand the scope of personal data collected, change the purposes for which it is used, or reduce your rights — we will provide prominent notice through the App and/or via email (if you have provided one) at least thirty (30) days before the change takes effect.</p>
+        <p>Your continued use of the Services after the effective date of any revised Privacy Policy constitutes your acceptance of the updated terms. If you do not agree to the updated terms, you should cease using the Services and may request deletion of your account.</p>
+        <p>We maintain an archive of previous versions of this Policy, which is available upon request.</p>
+      </section>
+
+      <!-- 19 -->
+      <section class="policy-section" id="s19">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">19</span>
+          Right to Lodge a Complaint with a Supervisory Authority
+        </h2>
+        <p>Without prejudice to any other administrative or judicial remedy, you have the right to lodge a complaint with a supervisory authority, in particular in the EU/EEA Member State of your habitual residence, place of work, or place of the alleged infringement, if you consider that the processing of your personal data infringes the GDPR.</p>
+        <p>As we are a Swedish company, the competent supervisory authority is:</p>
+        <div class="contact-card">
+          <div class="contact-card__name">Integritetsskyddsmyndigheten (IMY)</div>
+          <div class="contact-card__row"><span>Website</span><span><a href="https://www.imy.se" target="_blank" rel="noopener noreferrer">www.imy.se</a></span></div>
+          <div class="contact-card__row"><span>Email</span><span>imy@imy.se</span></div>
+          <div class="contact-card__row"><span>Phone</span><span>+46 8 657 61 00</span></div>
+          <div class="contact-card__row"><span>Address</span><span>Box 8114, 104 20 Stockholm, Sweden</span></div>
+        </div>
+        <p>We would, however, always appreciate the opportunity to address your concerns before you approach the supervisory authority. Please contact us first at <a href="mailto:hello@oakdev.app">hello@oakdev.app</a> so we may endeavour to resolve the matter to your satisfaction.</p>
+      </section>
+
+      <!-- 20 -->
+      <section class="policy-section" id="s20">
+        <h2 class="policy-section__title">
+          <span class="policy-section__num">20</span>
+          Contact Us
+        </h2>
+        <p>For any questions, concerns, or requests regarding this Privacy Policy or the processing of your personal data, please contact us:</p>
+        <div class="contact-card">
+          <div class="contact-card__name">OakDev &amp; AI AB — Data Privacy</div>
+          <div class="contact-card__row"><span>Email</span><span><a href="mailto:hello@oakdev.app">hello@oakdev.app</a></span></div>
+          <div class="contact-card__row"><span>Subject</span><span>Please use: "Privacy Policy Inquiry" or "Data Subject Rights Request"</span></div>
+          <div class="contact-card__row"><span>Response time</span><span>We aim to respond within 72 hours; we fulfil rights requests within 30 days</span></div>
+          <div class="contact-card__row"><span>Languages</span><span>English and Swedish</span></div>
+        </div>
+        <p>This Privacy Policy was drafted in the English language. In the event of any conflict between an English version and a translation, the English version shall prevail.</p>
+        <p style="margin-top:1.5rem; font-size:0.875rem; color:var(--cream-muted);">
+          <em>© 2026 OakDev &amp; AI AB. VAT SE559431678701. All rights reserved. This Privacy Policy constitutes a legally binding document governed by the laws of Sweden and the applicable law of the European Union.</em>
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="page-footer__inner">
+      <nav class="page-footer__links" aria-label="Footer links">
+        <a href="/"               class="page-footer__link">Home</a>
+        <a href="/privacy"        class="page-footer__link" aria-current="page">Privacy Policy</a>
+        <a href="/terms"          class="page-footer__link">Terms of Service</a>
+        <a href="/support"        class="page-footer__link">Support</a>
+        <a href="/delete-account" class="page-footer__link">Delete Account</a>
+      </nav>
+      <p class="page-footer__copy">© 2026 OakDev &amp; AI AB. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Active TOC link on scroll
+    const sections = document.querySelectorAll('.policy-section');
+    const links    = document.querySelectorAll('.toc__link');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('is-active'));
+          const active = document.querySelector(`.toc__link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>

@@ -11,7 +11,10 @@ let target = { x: 0, y: 0 };
 let animId;
 let tick = 0;
 
-const PARTICLE_COUNT = 280;
+const PARTICLE_COUNT = 150;
+const FPS_CAP = 30;
+const FRAME_INTERVAL = 1000 / FPS_CAP;
+let lastFrameTime = 0;
 
 const COLORS = [
   [201, 162, 39],   // gold
@@ -76,8 +79,10 @@ function onMouseMove(e) {
   target.y = (e.clientY / H - 0.5);
 }
 
-function animate() {
+function animate(now = 0) {
   animId = requestAnimationFrame(animate);
+  if (now - lastFrameTime < FRAME_INTERVAL) return;
+  lastFrameTime = now;
   tick++;
 
   // Smooth mouse lerp

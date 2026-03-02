@@ -2,34 +2,15 @@
    VESPERA — GSAP + ScrollTrigger Animations
    ============================================================ */
 
-export function initAnimations(lenis) {
+export function initAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    // GSAP not loaded — make all hidden elements visible immediately
-    document.querySelectorAll('[data-reveal]').forEach(el => {
-      el.style.opacity  = '1';
-      el.style.transform = 'none';
-    });
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Set initial hidden state for all data-reveal elements via GSAP
-  // (NOT via CSS, so elements are always visible if JS is off or GSAP fails)
+  // Set initial hidden state via GSAP (not CSS) so elements stay visible if GSAP fails
   gsap.set('[data-reveal]', { opacity: 0, y: 40 });
-
-  // Wire Lenis → ScrollTrigger proxy if lenis exists
-  if (lenis) {
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop(value) {
-        if (arguments.length) { lenis.scrollTo(value, { immediate: true }); }
-        return lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-      },
-    });
-  }
 
   animateHero();
   animateSections();
@@ -39,9 +20,8 @@ export function initAnimations(lenis) {
   animateBlessed();
   animateNav();
 
-  // Refresh after layout is settled
   window.addEventListener('load', () => {
-    setTimeout(() => ScrollTrigger.refresh(), 200);
+    setTimeout(() => ScrollTrigger.refresh(), 100);
   });
 }
 
